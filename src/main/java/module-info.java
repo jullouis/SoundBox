@@ -3,6 +3,6 @@ module com.example.soundbox {
     requires javafx.fxml;
             
                             
-    opens com.example.soundbox to javafx.fxml;
-    exports com.example.soundbox;
+    opens com.jngroup.soundbox to javafx.fxml;
+    exports com.jngroup.soundbox;
 }

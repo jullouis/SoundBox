@@ -1,9 +1,9 @@
-package com.example.soundbox;
+package com.jngroup.soundbox;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class SoundBoxController {
     @FXML
     private Label welcomeText;
 
