@@ -1,4 +1,4 @@
-package com.example.soundbox;
+package ControllerSoundBox;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

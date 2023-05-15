@@ -1,4 +1,4 @@
-package com.example.soundbox;
+package ControllerSoundBox;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
