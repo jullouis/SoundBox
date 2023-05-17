@@ -1,5 +1,4 @@
 package com.example.soundbox;
 
-public class Admin {
-    //test
+public class Album {
 }
