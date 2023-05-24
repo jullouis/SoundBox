@@ -4,17 +4,14 @@ import java.util.ArrayList;
 
 public class Song extends Album {
     ArrayList<String> feat = new ArrayList<>();
-    int duration;
+    int titleDuration;
     String titleName;
 
-    public Song(int duration, String titleName, String feat, String year, String coverURL, String mainInterpreter){
-        this.duration = duration;
+    public Song(int titleDuration, String titleName, ArrayList<String> feat, int year, String coverURL, String mainInterpreter){
+        super(year, coverURL, mainInterpreter);
+        this.titleDuration = titleDuration;
         this.titleName = titleName;
         this.feat = feat;
-        super.year = year;
-        super.coverURL = coverURL;
-        super.mainInterpreter = mainInterpreter;
-
     }
 
     public void playSong() {
@@ -27,13 +24,13 @@ public class Song extends Album {
         System.out.println("The song will repeat");
     }
     public ArrayList<String> getFeat() {
-        return feat + mainInterpreter;
+        return feat; //+ mainInterpreter;
     }
     public String getTitleName() {
         return titleName;
     }
     public int getTitleDuration(){
-        return duration;
+        return titleDuration;
     }
 }
 
