@@ -4,12 +4,28 @@ import javafx.scene.control.Label;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class HelloController {
-    @FXML
-    private Label welcomeText;
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to SoundBox");
+    ArrayList<String> albumlist = new ArrayList<>();
+    ArrayList<String> songlist = new ArrayList<>();
+    ArrayList<String> interpreterlist = new ArrayList<>();
+    public HelloController () {
+        albumlist.add("A Head Full of Dreams");
+        albumlist.add("Ghost Stories");
+        albumlist.add("Parachutes");
+        albumlist.add("Mylo Xyloto");
+        albumlist.add("X&Y");
+        songlist.add("One More time");
+        songlist.add("Red Flag");
+        songlist.add("StarLight");
+        songlist.add("In the End");
+        songlist.add("In Too Deep");
+        interpreterlist.add("Linkin Park");
+        interpreterlist.add("Cold Play");
+        interpreterlist.add("DaftPunk");
+        interpreterlist.add("AC/DC");
+        interpreterlist.add("Hardwell");
+        interpreterlist.add("Eminem");
     }
+
 
     /**
      * Create a method to researchAlbum
@@ -19,12 +35,6 @@ public class HelloController {
      */
     @FXML
     public void researchSong(){
-            ArrayList<String> playlist = new ArrayList<>();
-            playlist.add("One More time");
-            playlist.add("Red Flag");
-            playlist.add("StarLight");
-            playlist.add("In the End");
-            playlist.add("In Too Deep");
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Entry a Song : ");
@@ -33,7 +43,7 @@ public class HelloController {
             try {
                 boolean songExists = false;
 
-                for (String song : playlist) {
+                for (String song : albumlist) {
                     if (song.equalsIgnoreCase(searchSong)) {
                         songExists = true;
                         break;
@@ -58,13 +68,6 @@ public class HelloController {
      */
     @FXML
     public void researchAlbum(){
-        ArrayList<String> Album = new ArrayList<>();
-        Album.add("A Head Full of Dreams");
-        Album.add("Ghost Stories");
-        Album.add("Parachutes");
-        Album.add("Mylo Xyloto");
-        Album.add("X&Y");
-
         Scanner scanner = new Scanner(System.in);
         System.out.print("Entry an album : ");
         String searchAlbum = scanner.nextLine();
@@ -72,7 +75,7 @@ public class HelloController {
         try {
             boolean songExists = false;
 
-            for (String song : Album) {
+            for (String song : songlist) {
                 if (song.equalsIgnoreCase(searchAlbum)) {
                     songExists = true;
                     break;
@@ -97,13 +100,6 @@ public class HelloController {
      */
     @FXML
     public void researchInterpreter(){
-        ArrayList<String> Interpreter = new ArrayList<>();
-        Interpreter.add("Linkin Park");
-        Interpreter.add("Cold Play");
-        Interpreter.add("DaftPunk");
-        Interpreter.add("AC/DC");
-        Interpreter.add("Hardwell");
-        Interpreter.add("Eminem");
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Entry an Interpreter : ");
@@ -112,7 +108,7 @@ public class HelloController {
         try {
             boolean songExists = false;
 
-            for (String song : Interpreter) {
+            for (String song :  albumlist) {
                 if (song.equalsIgnoreCase(searchAlbum)) {
                     songExists = true;
                     break;
@@ -127,5 +123,15 @@ public class HelloController {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+    @FXML
+    public void createPlaylist() {
+    }
+    @FXML
+    public void addSongPlaylist() {
+    }
+    @FXML
+    public void deleteSongPlaylist() {
+
     }
     }

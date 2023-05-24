@@ -8,7 +8,6 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Button onAction="#onHelloButtonClick" onDragDetected="#onHelloButtonClick" text="Cilk to Start" />
 
     <Label fx:id="welcomeText" prefHeight="20.0" prefWidth="200.0" />
    <Accordion>

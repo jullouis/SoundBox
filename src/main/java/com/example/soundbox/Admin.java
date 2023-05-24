@@ -1,5 +1,5 @@
 package com.example.soundbox;
 
-public class Admin {
+public class Admin extends HelloController {
     //test
 }
