@@ -103,6 +103,7 @@ public class HelloController {
         Interpreter.add("DaftPunk");
         Interpreter.add("AC/DC");
         Interpreter.add("Hardwell");
+        Interpreter.add("Eminem");
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Entry an Interpreter : ");
