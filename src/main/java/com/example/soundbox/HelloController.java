@@ -1,23 +1,36 @@
 package com.example.soundbox;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 public class HelloController {
+    @FXML
+    private TextField researchBarre;
+
     ArrayList<String> albumlist = new ArrayList<>();
     ArrayList<String> songlist = new ArrayList<>();
     ArrayList<String> interpreterlist = new ArrayList<>();
-    public HelloController () {
+
+    ArrayList<String> Playlist1 = new ArrayList<>();
+
+    ArrayList<String> Playlist2 = new ArrayList<>();
+
+
+
+
+    public HelloController() {
         albumlist.add("A Head Full of Dreams");
         albumlist.add("Ghost Stories");
         albumlist.add("Parachutes");
         albumlist.add("Mylo Xyloto");
         albumlist.add("X&Y");
+
         songlist.add("One More time");
         songlist.add("Red Flag");
         songlist.add("StarLight");
         songlist.add("In the End");
         songlist.add("In Too Deep");
+
         interpreterlist.add("Linkin Park");
         interpreterlist.add("Cold Play");
         interpreterlist.add("DaftPunk");
@@ -26,112 +39,60 @@ public class HelloController {
         interpreterlist.add("Eminem");
     }
 
-
-    /**
-     * Create a method to researchAlbum
-     * User can entry a song with Scanner
-     * Test with an ArrayList
-     * Use Try/Catch if the user write something that doesn't exist in the data base
-     */
     @FXML
-    public void researchSong(){
+    protected void researchSong() {
+        String research = researchBarre.getText();
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Entry a Song : ");
-        String searchSong = scanner.nextLine();
+        boolean songFound = false;
+        boolean albumFound = false;
+        boolean artistFound = false;
 
-            try {
-                boolean songExists = false;
-
-                for (String song : albumlist) {
-                    if (song.equalsIgnoreCase(searchSong)) {
-                        songExists = true;
-                        break;
-                    }
-                }
-
-                if (songExists) {
-                    System.out.println(searchSong);
-                } else {
-                    throw new Exception("The Song " + searchSong + " doesn't exist");
-                }
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+        // Recherche dans la liste des chansons
+        for (String song : songlist) {
+            if (song.equalsIgnoreCase(research)) {
+                System.out.println(song);
+                songFound = true;
+                break;
             }
         }
 
-    /**
-     * Create a method to researchAlbum
-     * User can entry an album name with Scanner
-     * Test with an ArrayList
-     * Use Try/Catch if the user write something that doesn't exist in the database
-     */
-    @FXML
-    public void researchAlbum(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Entry an album : ");
-        String searchAlbum = scanner.nextLine();
-
-        try {
-            boolean songExists = false;
-
-            for (String song : songlist) {
-                if (song.equalsIgnoreCase(searchAlbum)) {
-                    songExists = true;
+        // Recherche dans la liste des albums
+        if (!songFound) {
+            for (String album : albumlist) {
+                if (album.equalsIgnoreCase(research)) {
+                    System.out.println(album);
+                    albumFound = true;
                     break;
                 }
             }
-
-            if (songExists) {
-                System.out.println(searchAlbum);
-            } else {
-                throw new Exception("Album " + searchAlbum + " doesn't exist");
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
         }
-    }
 
-    /**
-     * Create a method to researchInterpreterm
-     * User can entry an Interpreter with Scanner
-     * Test with an ArrayList
-     * Use Try/Catch if the user write something that doesn't exist in the database
-     */
-    @FXML
-    public void researchInterpreter(){
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Entry an Interpreter : ");
-        String searchAlbum = scanner.nextLine();
-
-        try {
-            boolean songExists = false;
-
-            for (String song :  albumlist) {
-                if (song.equalsIgnoreCase(searchAlbum)) {
-                    songExists = true;
+        // Recherche dans la liste des artistes
+        if (!songFound && !albumFound) {
+            for (String artist : interpreterlist) {
+                if (artist.equalsIgnoreCase(research)) {
+                    System.out.println(artist);
+                    artistFound = true;
                     break;
                 }
             }
+        }
 
-            if (songExists) {
-                System.out.println(searchAlbum);
-            } else {
-                throw new Exception("Interpreter " + searchAlbum + " doesn't exist");
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        if (!songFound && !albumFound && !artistFound) {
+            System.out.println("Aucun résultat trouvé.");
         }
     }
     @FXML
-    public void createPlaylist() {
+    protected void addSong() {
+        System.out.println("addsong");
     }
     @FXML
-    public void addSongPlaylist() {
+    protected void stopSong() {
+        System.out.println("stop");
     }
     @FXML
-    public void deleteSongPlaylist() {
+    protected void playSong() {
+        System.out.println("Play");
+    }
 
-    }
-    }
+}
