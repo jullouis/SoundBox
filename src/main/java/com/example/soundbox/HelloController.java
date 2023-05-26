@@ -1,11 +1,15 @@
 package com.example.soundbox;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.util.ArrayList;
 
 public class HelloController {
     @FXML
     private TextField researchBarre;
+    @FXML
+    private Label SongPlay;
+
 
     ArrayList<String> albumlist = new ArrayList<>();
     ArrayList<String> songlist = new ArrayList<>();
@@ -92,7 +96,7 @@ public class HelloController {
     }
     @FXML
     protected void playSong() {
-        System.out.println("Play");
+        SongPlay.setText("");
     }
 
 }

@@ -1,0 +1,3 @@
+type;Name;year;mainInterpreter;coverURL;duration;songList;numberSongs;feat
+Album;String;int;string;string;int;Array;int;
+Song;String;int;string;string;int;;;Array
