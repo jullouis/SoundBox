@@ -7,7 +7,7 @@ public class Song extends Album {
     int titleDuration;
     String titleName;
 
-    public Song(int titleDuration, String titleName, ArrayList<String> feat, int year, String coverURL, String mainInterpreter){
+    public Song(String titleName, int year, String mainInterpreter, String coverURL, int titleDuration, ArrayList<String> feat){
         super(year, coverURL, mainInterpreter);
         this.titleDuration = titleDuration;
         this.titleName = titleName;
@@ -23,14 +23,21 @@ public class Song extends Album {
     public void repeatSong(){
         System.out.println("The song will repeat");
     }
-    public ArrayList<String> getFeat() {
-        return feat; //+ mainInterpreter;
+    public String getFeat() {
+        String s = feat + mainInterpreter;
+        return s;
     }
-    public String getTitleName() {
+    public String getTitleName(){
         return titleName;
     }
     public int getTitleDuration(){
         return titleDuration;
+    }
+    public int getYear() {
+        return year;
+    }
+    public String getCoverURL(){
+        return coverURL;
     }
 }
 
