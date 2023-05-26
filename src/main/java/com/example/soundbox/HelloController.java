@@ -84,7 +84,7 @@ public class HelloController {
     }
     @FXML
     protected void addSong() {
-        System.out.println("addsong");
+        System.out.println("Song is add");
     }
     @FXML
     protected void stopSong() {
