@@ -1,17 +1,24 @@
 package com.example.soundbox;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class HelloController {
     @FXML
     private TextField researchBarre;
     @FXML
-    private Label songPlay;
+    private Label stateSong;
     @FXML
-    private Label songBreak;
-
+    private Label addInPlaylist;
+    @FXML
+    private ImageView backgroungImage;
 
 
     ArrayList<String> albumlist = new ArrayList<>();
@@ -19,7 +26,7 @@ public class HelloController {
     ArrayList<String> interpreterlist = new ArrayList<>();
     ArrayList<String> Playlist1 = new ArrayList<>();
     ArrayList<String> Playlist2 = new ArrayList<>();
-    int i = 0;
+    int i = -1;
 
 
 
@@ -43,8 +50,14 @@ public class HelloController {
         interpreterlist.add("AC/DC");
         interpreterlist.add("Hardwell");
         interpreterlist.add("Eminem");
-    }
 
+    }
+    /*@FXML
+    protected File printBackgroungImage(){
+        Image backgroundUrl = new Image(file.toURI.C:\\\\Projet_Informatique\\\\SoundBox\\\\data\\\\pics\\\\Arrière_plan.jpg\");
+        backgroungImage.setImage(file.toURI."C:\\Projet_Informatique\\SoundBox\\data\\pics\\Arrière_plan.jpg");
+    }
+     */
     @FXML
     protected int researchSong() {
         String research = researchBarre.getText();
@@ -53,23 +66,23 @@ public class HelloController {
         // Recherche dans la liste des chansons
         int i = -1;
         System.out.println(i);
-        if (songlist.contains(research)){
-           while ( i < songlist.size()) {
-               i++;
-               if (songlist.get(i).equalsIgnoreCase(research)) {
-                   System.out.println(songlist.get(i));
-                   System.out.println(i);
-                   break;
-               } else {
-                   System.out.println("i++");
-               }
-           }
+        if (songlist.contains(research)) {
+            while (i < songlist.size()) {
+                i++;
+                if (songlist.get(i).equalsIgnoreCase(research)) {
+                    System.out.println(songlist.get(i));
+                    System.out.println(i);
+                    break;
+                } else {
+                    System.out.println("i++");
+                }
+            }
         } else {
-           i = -2;
-           System.out.println("L'élément recherché n'existe pas");
+            i = -2;
+            System.out.println("L'élément recherché n'existe pas");
         }
         return i;
-
+    }
 
  /*
         for (String song : songlist) {
@@ -115,22 +128,27 @@ public class HelloController {
  }
 **/
 
-    }
     @FXML
     protected void addSong() {
-        System.out.println("Song is add");
+        stateSong.setText("La musique " + songlist.get(researchSong()) + " est ajoutée " + addInPlaylist);
+        addInPlaylist.setText(songlist.get(researchSong()));
     }
     @FXML
+    protected void deleteSong() {
+        stateSong.setText("La musique " + songlist.get(researchSong()) + " est supprimée à la playlist");
+    }
+
+    @FXML
     protected void stopSong() {
-        songBreak.setText("Pause");
+        stateSong.setText("Pause");
     }
     @FXML
     protected void playSong() {
-        if(i == -1) {
-            songPlay.setText (" no song selected " );
-        }
-        else {
-            songPlay.setText( songlist.get(researchSong())  +  " is playing " );
+        if (researchSong() == -1) {
+            stateSong.setText (" no song selected " );
+            System.out.println(i);
+        } else {
+            stateSong.setText(songlist.get(researchSong())  +  " is playing " );
             System.out.println(i);
         }
     }
