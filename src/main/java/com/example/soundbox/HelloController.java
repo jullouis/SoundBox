@@ -8,16 +8,18 @@ public class HelloController {
     @FXML
     private TextField researchBarre;
     @FXML
-    private Label SongPlay;
+    private Label songPlay;
+    @FXML
+    private Label songBreak;
+
 
 
     ArrayList<String> albumlist = new ArrayList<>();
     ArrayList<String> songlist = new ArrayList<>();
     ArrayList<String> interpreterlist = new ArrayList<>();
-
     ArrayList<String> Playlist1 = new ArrayList<>();
-
     ArrayList<String> Playlist2 = new ArrayList<>();
+    int i = -1;
 
 
 
@@ -52,20 +54,25 @@ public class HelloController {
         boolean artistFound = false;
 
         // Recherche dans la liste des chansons
+        i = -1;
         for (String song : songlist) {
             if (song.equalsIgnoreCase(research)) {
                 System.out.println(song);
                 songFound = true;
+                i++;
                 break;
             }
         }
 
         // Recherche dans la liste des albums
+
         if (!songFound) {
+            i = -1;
             for (String album : albumlist) {
                 if (album.equalsIgnoreCase(research)) {
                     System.out.println(album);
                     albumFound = true;
+                    i++;
                     break;
                 }
             }
@@ -73,10 +80,12 @@ public class HelloController {
 
         // Recherche dans la liste des artistes
         if (!songFound && !albumFound) {
+            i = -1;
             for (String artist : interpreterlist) {
                 if (artist.equalsIgnoreCase(research)) {
                     System.out.println(artist);
                     artistFound = true;
+                    i++;
                     break;
                 }
             }
@@ -92,11 +101,16 @@ public class HelloController {
     }
     @FXML
     protected void stopSong() {
-        System.out.println("stop");
+        songBreak.setText("Pause");
     }
     @FXML
     protected void playSong() {
-        SongPlay.setText("");
+        if(i == -1) {
+            songPlay.setText (" no song selected " );
+        }
+        else {
+            songPlay.setText( songlist.get(i)  +  " is playing " );
+        }
     }
 
 }
