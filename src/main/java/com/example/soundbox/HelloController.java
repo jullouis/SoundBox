@@ -19,7 +19,7 @@ public class HelloController {
     ArrayList<String> interpreterlist = new ArrayList<>();
     ArrayList<String> Playlist1 = new ArrayList<>();
     ArrayList<String> Playlist2 = new ArrayList<>();
-    int i = -1;
+    int i = 0;
 
 
 
@@ -46,26 +46,45 @@ public class HelloController {
     }
 
     @FXML
-    protected void researchSong() {
+    protected int researchSong() {
         String research = researchBarre.getText();
 
-        boolean songFound = false;
-        boolean albumFound = false;
-        boolean artistFound = false;
 
         // Recherche dans la liste des chansons
-        i = -1;
+        int i = -1;
+        System.out.println(i);
+        if (songlist.contains(research)){
+           while ( i < songlist.size()) {
+               i++;
+               if (songlist.get(i).equalsIgnoreCase(research)) {
+                   System.out.println(songlist.get(i));
+                   System.out.println(i);
+                   break;
+               } else {
+                   System.out.println("i++");
+               }
+           }
+        } else {
+           i = -2;
+           System.out.println("L'élément recherché n'existe pas");
+        }
+        return i;
+
+
+ /*
         for (String song : songlist) {
             if (song.equalsIgnoreCase(research)) {
+                System.out.println(i);
                 System.out.println(song);
                 songFound = true;
                 i++;
+                if()
                 break;
             }
         }
-
+*/
         // Recherche dans la liste des albums
-
+/**
         if (!songFound) {
             i = -1;
             for (String album : albumlist) {
@@ -90,10 +109,12 @@ public class HelloController {
                 }
             }
         }
-
         if (!songFound && !albumFound && !artistFound) {
             System.out.println("Aucun résultat trouvé.");
-        }
+    }
+ }
+**/
+
     }
     @FXML
     protected void addSong() {
@@ -109,7 +130,8 @@ public class HelloController {
             songPlay.setText (" no song selected " );
         }
         else {
-            songPlay.setText( songlist.get(i)  +  " is playing " );
+            songPlay.setText( songlist.get(researchSong())  +  " is playing " );
+            System.out.println(i);
         }
     }
 
