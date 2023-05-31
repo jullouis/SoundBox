@@ -17,6 +17,13 @@ public class HelloApplication extends Application {
         stage.setTitle("SoundBox limited");
         stage.setScene(scene);
         stage.show();
+
+        FXMLLoader adminLoader;
+        adminLoader = new FXMLLoader(HelloApplication.class.getResource("admin.fxml"));
+        Scene adminScene = new Scene(adminLoader.load(), 800, 600);
+        stage.setTitle("SoundBox limited");
+        stage.setScene(adminScene);
+        stage.show();
     }
     public HelloApplication(){
 
