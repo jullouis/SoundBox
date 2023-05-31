@@ -37,25 +37,47 @@ public class HelloApplication extends Application {
     }
     public HelloApplication() throws FileNotFoundException {
 
-        String csvFile = "data/database/Database.csv";
+        String csvFile = "data/database/songs_db.csv";
         String delimiter = ";";
         List<String> albumList = new ArrayList<>();
+        List<String> yearList = new ArrayList<>();
+        List<String> mainInterpreterList = new ArrayList<>();
+        List<String> coverUrlList = new ArrayList<>();
+        List<String> durationList = new ArrayList<>();
+        //List<String> songList = new ArrayList<>();
+        //List<String> featList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
             while ((line = br.readLine()) != null) {
+
+                String[] numberColumns = line.split(delimiter); //contrôle le nombre de colonnes entrées
+
                 String[] columns = line.split(delimiter);
                 // Ajouter les valeurs de la colonne souhaitée à la liste
-                albumList.add(columns[0]); // Modifier l'indice selon la colonne souhaitée
+                albumList.add(columns[1]); // Modifier l'indice selon la colonne souhaitée
+                yearList.add(columns[2]);
+                mainInterpreterList.add(columns[3]);
+                coverUrlList.add(columns[4]);
+                if (columns.length >= 6 && !columns[5].isEmpty()) {
+                    durationList.add(columns[5]);
+                }
+                //songList.add(columns[6]);
+                //featList.add(columns[8]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // Afficher les valeurs de la liste
-        for (String album : albumList) {
-            System.out.println(album);
-        }
+            System.out.println(albumList);
+            System.out.println(yearList);
+            System.out.println(mainInterpreterList);
+            System.out.println(coverUrlList);
+            System.out.println(durationList);
+        //System.out.println(songList);
+        //System.out.println(featList);
+
 /*
 
         Scanner sc = new Scanner(new File("data/database/Database.csv"));//créer un nouveau scanner
@@ -74,7 +96,6 @@ public class HelloApplication extends Application {
 
         }
         sc.close();//fermeture du fichier*/
-        System.out.println(albumList);
     }
 
     public static void main(String[] args) {
