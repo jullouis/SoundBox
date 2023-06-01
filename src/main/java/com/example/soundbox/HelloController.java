@@ -74,11 +74,11 @@ public class HelloController {
         // Recherche dans la liste des chansons
         int i = -1;
         System.out.println(i);
-        if (songlist.contains(research)) {
-            while (i < songlist.size()) {
+        if (HelloApplication.getNameList().contains(research)) {
+            while (i < HelloApplication.getNameList().size()) {
                 i++;
-                if (songlist.get(i).equalsIgnoreCase(research)) {
-                    System.out.println(songlist.get(i));
+                if (HelloApplication.getNameList().get(i).equalsIgnoreCase(research)) {
+                    System.out.println(HelloApplication.getNameList().get(i));
                     System.out.println(i);
                     found = true;
                     break;
@@ -164,7 +164,7 @@ public class HelloController {
     protected void playSong() {
         int result = researchSong();
         if (result >= 0) {
-            stateSong.setText(songlist.get(result) + " est lancée");
+            stateSong.setText(HelloApplication.getNameList().get(result) + " est lancée");
             System.out.println(i);
             System.out.println(HelloApplication.getNameList()); // Appel de la liste du CSV
         }
