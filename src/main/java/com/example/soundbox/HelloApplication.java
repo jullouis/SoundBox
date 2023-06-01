@@ -20,6 +20,12 @@ import java.util.List;
 
 public class HelloApplication extends Application {
     static ArrayList<String> nameList = new ArrayList<>();
+    static ArrayList<String> yearList = new ArrayList<>();
+    static ArrayList<String> mainInterpreterList = new ArrayList<>();
+    static ArrayList<String> coverUrlList = new ArrayList<>();
+    static ArrayList<String> durationList = new ArrayList<>();
+    static ArrayList<String> songList = new ArrayList<>();
+    //static ArrayList<String> featList = new ArrayList<>();
 
 
     @Override
@@ -42,13 +48,6 @@ public class HelloApplication extends Application {
 
         String csvFile = "data/database/songs_db.csv";
         String delimiter = ";";
-
-        List<String> yearList = new ArrayList<>();
-        List<String> mainInterpreterList = new ArrayList<>();
-        List<String> coverUrlList = new ArrayList<>();
-        List<String> durationList = new ArrayList<>();
-        List<String> songList = new ArrayList<>();
-        //List<String> featList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
@@ -115,7 +114,25 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    // Donner la liste nameList pour plus loin
     public static ArrayList<String> getNameList(){ // Donner la liste nameList pour plus loin
         return nameList;
     }
+    public static ArrayList<String> getYearList(){ // Donner la liste nameList pour plus loin
+        return yearList;
+    }
+    public static ArrayList<String> getMainInterpreterList(){ // Donner la liste nameList pour plus loin
+        return mainInterpreterList;
+    }
+    public static ArrayList<String> getCoverUrlList(){ // Donner la liste nameList pour plus loin
+        return coverUrlList;
+    }
+    public static ArrayList<String> getDurationList(){
+        return durationList;
+    }
+    public static ArrayList<String> getSongList(){ // Donner la liste nameList pour plus loin
+        return songList;
+    }
+
 }

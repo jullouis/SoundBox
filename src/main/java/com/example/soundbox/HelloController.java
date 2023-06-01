@@ -53,6 +53,10 @@ public class HelloController {
         interpreterlist.add("Hardwell");
         interpreterlist.add("Eminem");
 
+        // A modifier, juste pour tester l'attribution de songList (et ajouter la majuscule !!)
+        songlist.addAll(HelloApplication.getSongList());
+        System.out.println(songlist);
+
     }
 
     /**
