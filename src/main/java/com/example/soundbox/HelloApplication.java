@@ -28,12 +28,12 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        FXMLLoader adminLoader;
+        /*FXMLLoader adminLoader;
         adminLoader = new FXMLLoader(HelloApplication.class.getResource("admin.fxml"));
         Scene adminScene = new Scene(adminLoader.load(), 800, 600);
         stage.setTitle("SoundBox limited");
         stage.setScene(adminScene);
-        stage.show();
+        stage.show();*/
     }
     public HelloApplication() throws FileNotFoundException {
 
@@ -44,7 +44,7 @@ public class HelloApplication extends Application {
         List<String> mainInterpreterList = new ArrayList<>();
         List<String> coverUrlList = new ArrayList<>();
         List<String> durationList = new ArrayList<>();
-        //List<String> songList = new ArrayList<>();
+        List<String> songList = new ArrayList<>();
         //List<String> featList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -62,6 +62,10 @@ public class HelloApplication extends Application {
                 if (columns.length >= 6 && !columns[5].isEmpty()) {
                     durationList.add(columns[5]);
                 }
+                if (columns[0] == "album"){
+                        songList.add(columns[6]);
+                }
+
                 //songList.add(columns[6]);
                 //featList.add(columns[8]);
             }
@@ -75,7 +79,7 @@ public class HelloApplication extends Application {
             System.out.println(mainInterpreterList);
             System.out.println(coverUrlList);
             System.out.println(durationList);
-        //System.out.println(songList);
+            System.out.println(songList);
         //System.out.println(featList);
 
 /*
