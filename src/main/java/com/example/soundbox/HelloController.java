@@ -20,10 +20,6 @@ public class HelloController {
     private TextField researchBarre;
     @FXML
     private Label stateSong;
-    //@FXML
-    //private Label addInPlaylist;
-    //@FXML
-    //private ImageView backgroungImage;
     @FXML
     private ComboBox<String> playlistBox;
 
@@ -33,7 +29,8 @@ public class HelloController {
     ArrayList<String> interpreterlist = new ArrayList<>();
     //ArrayList<String> Playlist1 = new ArrayList<>();
     //ArrayList<String> Playlist2 = new ArrayList<>();
-    int i = -1;
+    //int i = -1;
+    //int selectedSong;
 
 
     public HelloController() {
@@ -42,7 +39,6 @@ public class HelloController {
         albumlist.add("Parachutes");
         albumlist.add("Mylo Xyloto");
         albumlist.add("X&Y");
-        //nameList.add;
 
         songlist.add("One More Time");
         songlist.add("Red Flag");
@@ -57,28 +53,28 @@ public class HelloController {
         interpreterlist.add("Hardwell");
         interpreterlist.add("Eminem");
 
-
     }
 
     /**
      * Create method for searching music or artist to find a song
      *
-     * @return
+     * @return we return index i. The index contain a song type String that can be show on the label stateSong
      */
     @FXML
     protected int researchSong() {
         String research = researchBarre.getText();
+
         boolean found = false;
 
 
         // Recherche dans la liste des chansons
         int i = -1;
         System.out.println(i);
-        if (HelloApplication.getNameList().contains(research)) {
-            while (i < HelloApplication.getNameList().size()) {
+        if (songlist.contains(research)) {
+            while (i < songlist.size()) {
                 i++;
-                if (HelloApplication.getNameList().get(i).equalsIgnoreCase(research)) {
-                    System.out.println(HelloApplication.getNameList().get(i));
+                if (songlist.get(i).equalsIgnoreCase(research)) {
+                    System.out.println(songlist.get(i));
                     System.out.println(i);
                     found = true;
                     break;
@@ -87,7 +83,7 @@ public class HelloController {
                 }
             }
         } else if (interpreterlist.contains(research)) {
-            i = -1;
+            //i = -1;
             while (i < interpreterlist.size()) {
                 i++;
                 if (interpreterlist.get(i).equalsIgnoreCase(research)) {
@@ -101,30 +97,42 @@ public class HelloController {
         }
         if (found) {
             stateSong.setText(research);
-        } else{
+        } else {
             stateSong.setText("L'élément recherché n'existe pas");
-            //i = -1; // rénitialiser la valeur i
+
         }
         return i;
     }
 
     /**
      * Method which add a song to a playlist
+     * If the song doesn't exit research, you can't add
+     * the song on the playlist1. If the song exist you can.
      */
 
     @FXML
     protected void addSongPlaylist() {
-        playlistBox.getItems().add(researchBarre.getText());
-        researchBarre.clear();
+        String songResearchBarre = researchBarre.getText();
+        if (songResearchBarre.equals("L'élément recherché n'existe pas")) {
+           stateSong.setText(" ");
+        } else if (songlist.contains(songResearchBarre) || interpreterlist.contains(songResearchBarre)) {
+            playlistBox.getItems().add(songResearchBarre);
+            researchBarre.clear();
+        } else {
+            stateSong.setText("Impossible d'ajouter dans la playlist");
+        }
     }
-
     /**
      * Method which delete a song of a playlist
      */
     @FXML
     protected void deleteSongPlaylist(ActionEvent event) {
-        playlistBox.getItems().remove(stateSong.getText());
-
+        String selectedSong = playlistBox.getValue();
+        String currentSong = stateSong.getText();
+        if (selectedSong != null && selectedSong.equals(currentSong)) {
+            stateSong.setText("");
+        }
+        playlistBox.getItems().remove(selectedSong);
     }
 
     @FXML
@@ -133,54 +141,44 @@ public class HelloController {
     }
 
     /**
-     * Method which stop a song during the play
+     * Method stop the song which is on the stateSong
+     * The method check if there is a String on the stateSong and put " est en pause " or " est en cours " or " Pas de musique" if stateSong is empty.
+     * This is better because we this button don't work with the method researchSong because it's more complicated
+     * to do the difference between researchButton and Sélection musique.
      */
     @FXML
     protected void stopSong() {
-        int result = researchSong();
-        if (result >= 0) {
-            stateSong.setText(songlist.get(result) + " est en pause");
-            System.out.println(i);
-        }
-        else if (result == -1) {
-            stateSong.setText("Pas de musique a jouer");
-            System.out.println(i);
-        }
-        else if (result == -2) {
-            String selectedPlaylist = playlistBox.getValue();
-            if (selectedPlaylist != null) {
-                stateSong.setText(selectedPlaylist + " est en pause");
-            } else {
-                stateSong.setText("Aucune musique sélectionnée");
+        String currentSong = stateSong.getText();
+        if (currentSong.equals("L'élément recherché n'existe pas")) {
+            stateSong.setText("Aucune musique");
+        } else if (!currentSong.isEmpty() && !currentSong.equals("Aucune musique")) {
+            if (!currentSong.endsWith(" est en pause")) {
+                currentSong = currentSong.replace(" est en cours", "");
+                stateSong.setText(currentSong + " est en pause");
             }
         }
+
     }
 
     /**
-     * Method which play a song
+     * Method play the song which is on the stateSong
+     * The method check if there is a String on the stateSong and put " est en pause " or " est en cours " or " Pas de musique" if stateSong is empty.
+     * This is better because we this button don't work with the method researchSong because it's more complicated
+     * to do the difference between researchButton and Sélection musique.
      */
     @FXML
-    //switch case
     protected void playSong() {
-        int result = researchSong();
-        if (result >= 0) {
-            stateSong.setText(HelloApplication.getNameList().get(result) + " est lancée");
-            System.out.println(i);
-            System.out.println(HelloApplication.getNameList()); // Appel de la liste du CSV
-        }
-        else if (result == -1) {
-            stateSong.setText("Pas de musique sélectionnée");
-            System.out.println(i);
-        }
-        else if (result == -2) {
-            String selectedPlaylist = playlistBox.getValue();
-            if (selectedPlaylist != null) {
-                stateSong.setText(selectedPlaylist + " est lancée");
-            } else {
-                stateSong.setText("Aucune musique sélectionnée dans la playlist");
-                 }
+        String currentSong = stateSong.getText();
+        if (currentSong.equals("L'élément recherché n'existe pas")) {
+            stateSong.setText("Aucune musique");
+        } else if (!currentSong.isEmpty() && !currentSong.equals("Aucune musique")) {
+            if (!currentSong.endsWith(" est en cours")) {
+                currentSong = currentSong.replace(" est en pause", "");
+                stateSong.setText(currentSong + " est en cours");
             }
-     }
 
+        }
+
+    }
 }
 
