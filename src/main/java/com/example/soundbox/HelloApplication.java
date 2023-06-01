@@ -39,7 +39,7 @@ public class HelloApplication extends Application {
 
         String csvFile = "data/database/songs_db.csv";
         String delimiter = ";";
-        List<String> albumList = new ArrayList<>();
+        List<String>nameList = new ArrayList<>();
         List<String> yearList = new ArrayList<>();
         List<String> mainInterpreterList = new ArrayList<>();
         List<String> coverUrlList = new ArrayList<>();
@@ -55,7 +55,7 @@ public class HelloApplication extends Application {
 
                 String[] columns = line.split(delimiter);
                 // Ajouter les valeurs de la colonne souhaitée à la liste
-                albumList.add(columns[1]); // Modifier l'indice selon la colonne souhaitée
+                nameList.add(columns[1]); // Modifier l'indice selon la colonne souhaitée
                 yearList.add(columns[2]);
                 mainInterpreterList.add(columns[3]);
                 coverUrlList.add(columns[4]);
@@ -73,8 +73,15 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
+        /*
+
+        ### Marquer qu'on pourrait faire une base de données pour les utilisateurs avec leurs infos de connexion,
+            playlists,...
+
+         */
+
         // Afficher les valeurs de la liste
-            System.out.println(albumList);
+            System.out.println(nameList);
             System.out.println(yearList);
             System.out.println(mainInterpreterList);
             System.out.println(coverUrlList);
