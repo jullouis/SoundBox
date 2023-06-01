@@ -42,6 +42,7 @@ public class HelloController {
         albumlist.add("Parachutes");
         albumlist.add("Mylo Xyloto");
         albumlist.add("X&Y");
+        //nameList.add;
 
         songlist.add("One More Time");
         songlist.add("Red Flag");
@@ -55,6 +56,7 @@ public class HelloController {
         interpreterlist.add("AC/DC");
         interpreterlist.add("Hardwell");
         interpreterlist.add("Eminem");
+
 
     }
 
@@ -158,11 +160,13 @@ public class HelloController {
      * Method which play a song
      */
     @FXML
+    //switch case
     protected void playSong() {
         int result = researchSong();
         if (result >= 0) {
             stateSong.setText(songlist.get(result) + " est lancée");
             System.out.println(i);
+            System.out.println(HelloApplication.getNameList()); // Appel de la liste du CSV
         }
         else if (result == -1) {
             stateSong.setText("Pas de musique sélectionnée");

@@ -19,6 +19,9 @@ import java.util.List;
 
 
 public class HelloApplication extends Application {
+    static ArrayList<String> nameList = new ArrayList<>();
+
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader;
@@ -39,7 +42,7 @@ public class HelloApplication extends Application {
 
         String csvFile = "data/database/songs_db.csv";
         String delimiter = ";";
-        List<String>nameList = new ArrayList<>();
+
         List<String> yearList = new ArrayList<>();
         List<String> mainInterpreterList = new ArrayList<>();
         List<String> coverUrlList = new ArrayList<>();
@@ -111,5 +114,8 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    public static ArrayList<String> getNameList(){ // Donner la liste nameList pour plus loin
+        return nameList;
     }
 }
