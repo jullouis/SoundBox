@@ -54,7 +54,7 @@ public class HelloController {
         interpreterlist.add("Eminem");
 
         // A modifier, juste pour tester l'attribution de songList (et ajouter la majuscule !!)
-        songlist.addAll(HelloApplication.getSongList());
+        songlist.addAll(HelloApplication.getNameList());
         System.out.println(songlist);
 
     }
@@ -74,11 +74,11 @@ public class HelloController {
         // Recherche dans la liste des chansons
         int i = -1;
         System.out.println(i);
-        if (songlist.contains(research)) {
-            while (i < songlist.size()) {
+        if (HelloApplication.getNameList().contains(research)) {
+            while (i < HelloApplication.getNameList().size()) {
                 i++;
-                if (songlist.get(i).equalsIgnoreCase(research)) {
-                    System.out.println(songlist.get(i));
+                if (HelloApplication.getNameList().get(i).equalsIgnoreCase(research)) {
+                    System.out.println(HelloApplication.getNameList().get(i));
                     System.out.println(i);
                     found = true;
                     break;
@@ -119,7 +119,7 @@ public class HelloController {
         String songResearchBarre = researchBarre.getText();
         if (songResearchBarre.equals("L'élément recherché n'existe pas")) {
            stateSong.setText(" ");
-        } else if (songlist.contains(songResearchBarre) || interpreterlist.contains(songResearchBarre)) {
+        } else if (HelloApplication.getNameList().contains(songResearchBarre) || interpreterlist.contains(songResearchBarre)) {
             playlistBox.getItems().add(songResearchBarre);
             researchBarre.clear();
         } else {
