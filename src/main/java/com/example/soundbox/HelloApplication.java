@@ -32,7 +32,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 750, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 740, 500);
         stage.setTitle("SoundBox limited");
         stage.setScene(scene);
         stage.show();
