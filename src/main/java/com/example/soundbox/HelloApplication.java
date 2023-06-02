@@ -119,6 +119,7 @@ public class HelloApplication extends Application {
     public static ArrayList<String> getNameList(){ // Donner la liste nameList pour plus loin
         return nameList;
     }
+    //ToDo ajouter l'album à la liste ?
     public static ArrayList<String> getYearList(){ // Donner la liste nameList pour plus loin
         return yearList;
     }

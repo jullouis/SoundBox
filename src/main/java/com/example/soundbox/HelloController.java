@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.util.ArrayList;
@@ -22,6 +23,19 @@ public class HelloController {
     private Label stateSong;
     @FXML
     private ComboBox<String> playlistBox;
+
+    @FXML
+    private Label title;
+    @FXML
+    private Label year;
+    @FXML
+    private Label artist;
+    @FXML
+    private Label duration;
+
+    @FXML
+    private GridPane songDatas;
+
 
 
     ArrayList<String> albumlist = new ArrayList<>();
@@ -65,11 +79,16 @@ public class HelloController {
      * @return we return index i. The index contain a song type String that can be show on the label stateSong
      */
     @FXML
-    protected int research() {
+    protected int researchButton() {
 
         //ToDo ajouter la fonction de convertissement en minuscules
 
-        String research = researchBarre.getText();
+        String researchedText = researchBarre.getText();
+        int index = research(researchedText);
+        return index;
+    }
+
+    protected int research(String researchedSong) {
 
         boolean found = false;
 
@@ -77,10 +96,10 @@ public class HelloController {
         // Recherche dans la liste des chansons
         int i = -1;
         System.out.println(i);
-        if (HelloApplication.getNameList().contains(research)) {
+        if (HelloApplication.getNameList().contains(researchedSong)) {
             while (i < HelloApplication.getNameList().size()) {
                 i++;
-                if (HelloApplication.getNameList().get(i).equalsIgnoreCase(research)) {
+                if (HelloApplication.getNameList().get(i).equalsIgnoreCase(researchedSong)) {
                     System.out.println(HelloApplication.getNameList().get(i));
                     System.out.println(i);
                     found = true;
@@ -89,11 +108,11 @@ public class HelloController {
                     System.out.println("search");
                 }
             }
-        } else if (HelloApplication.getMainInterpreterList().contains(research)) {
+        } else if (HelloApplication.getMainInterpreterList().contains(researchedSong)) {
             //i = -1;
             while (i < HelloApplication.getMainInterpreterList().size()) {
                 i++;
-                if (HelloApplication.getMainInterpreterList().get(i).equalsIgnoreCase(research)) {
+                if (HelloApplication.getMainInterpreterList().get(i).equalsIgnoreCase(researchedSong)) {
                     System.out.println(HelloApplication.getMainInterpreterList().get(i));
                     System.out.println(i);
                     break;
@@ -103,12 +122,22 @@ public class HelloController {
             }
         }
         if (found) {
-            stateSong.setText(research);
+            stateSong.setText(researchedSong);
         } else {
             stateSong.setText("L'élément recherché n'existe pas");
 
         }
         return i;
+    }
+
+    @FXML
+    protected void getSongDatas(){
+        String currentSong = stateSong.getText();
+        int index = research(currentSong);
+
+        //title, year, artist, duration,
+        title.setText(HelloApplication.getNameList().get(index));
+
     }
 
     /**
@@ -155,6 +184,7 @@ public class HelloController {
      */
     @FXML
     protected void stopSong() {
+        songDatas.setVisible(false);
         String currentSong = stateSong.getText();
         if (currentSong.equals("L'élément recherché n'existe pas")) {
             stateSong.setText("Aucune musique");
@@ -175,6 +205,8 @@ public class HelloController {
      */
     @FXML
     protected void playSong() {
+        songDatas.setVisible(true);
+        getSongDatas();
         String currentSong = stateSong.getText();
         if (currentSong.equals("L'élément recherché n'existe pas")) {
             stateSong.setText("Aucune musique");

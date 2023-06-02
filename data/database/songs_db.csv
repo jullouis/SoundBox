@@ -1,30 +1,29 @@
-type;Name;year;mainInterpreter;coverURL;duration;songList;numberSongs;feat;sonURL
-song;Rememeber the time;1995;Michael Jackson;URL;;;;;;src/main/resources/songs/Damso-Macarena.mp3
-song;Macarena;2017;Damso;src/main/resources/pics/Damso.jpg;3:35;;;;;
-song;Shape of You;2017;Ed Sheeran;https://example.com/shape_of_you.jpg;3:53;;;;;
-song;Uptown Funk;2014;Mark Ronson;https://example.com/uptown_funk.jpg;4:30;;;;Bruno Mars;
-song;Despacito;2017;Luis Fonsi;https://example.com/despacito.jpg;3:48;;;;;
-song;Hello;2015;Adele;https://example.com/hello.jpg;4:55;;;;;
-song;Closer;2016;The Chainsmokers;https://example.com/closer.jpg;4:04;;;;;
-song;Someone Like You;2011;Adele;https://example.com/someone_like_you.jpg;4:45;;;;;
-song;Blinding Lights;2019;The Weeknd;https://example.com/blinding_lights.jpg;3:20;;;;;
-song;Thinking Out Loud;2014;Ed Sheeran;https://example.com/thinking_out_loud.jpg;4:41;;;;;
-song;Waka Waka (This Time for Africa);2010;Shakira;https://example.com/waka_waka.jpg;3:22;;;;;
-song;Can't Stop the Feeling!;2016;Justin Timberlake;https://example.com/cant_stop_the_feeling.jpg;4:19;;;;;
-song;Cheap Thrills;2016;Sia;https://example.com/cheap_thrills.jpg;3:31;;;;;
-song;Sorry;2015;Justin Bieber;https://example.com/sorry.jpg;3:20;;;;;
-song;Roar;2013;Katy Perry;https://example.com/roar.jpg;3:42;;;;;
-song;Counting Stars;2013;OneRepublic;https://example.com/counting_stars.jpg;4:17;;;;;
-song;All About That Bass;2014;Meghan Trainor;https://example.com/all_about_that_bass.jpg;3:10;;;;
-song;Party Rock Anthem;2011;LMFAO;https://example.com/party_rock_anthem.jpg;4:23;;;;
-song;Radioactive;2012;Imagine Dragons;https://example.com/radioactive.jpg;3:07;;;;
-song;Wake Me Up;2013;Avicii;https://example.com/wake_me_up.jpg;4:09;;;;
-song;We Found Love;2011;Rihanna;https://example.com/we_found_love.jpg;3:35;;;;
-song;Happy;2013;Pharrell Williams;https://example.com/happy.jpg;3:52;;;;
-song;Love Yourself;2015;Justin Bieber;https://example.com/love_yourself.jpg;3:53;;;;
-song;Rolling in the Deep;2010;Adele;https://example.com/rolling_in_the_deep.jpg;3:48;;;;
-song;Shape of My Heart;1993;Sting;https://example.com/shape_of_my_heart.jpg;4:38;;;;
-song;Hallelujah;1984;Leonard Cohen;https://example.com/hallelujah.jpg;4:36;;;;
-song;Bohemian Rhapsody;1975;Queen;https://example.com/bohemian_rhapsody.jpg;5:55;;;;
-Song;String;int;string;string;int;;;Array
-Album;String;int;string;string;int;Array;int;
+type;Name;album;year;mainInterpreter;coverURL;duration;songList;numberSongs;feat;songURL
+song;Rememeber the time;Dangerous;1991;Michael Jackson;URL;;;;;
+song;Macarena;2017;Damso;Mosaïque Solitaire;src/main/resources/pics/Damso.jpg;3:35;;;;;src/main/resources/songs/Damso-Macarena.mp3
+song;Shape of You;÷ (Divide);2017;Ed Sheeran;https://example.com/shape_of_you.jpg;3:53;;;;
+song;Uptown Funk;Uptown Special;2014;Mark Ronson;https://example.com/uptown_funk.jpg;4:30;;;Bruno Mars
+song;Despacito;Vida;2017;Luis Fonsi;https://example.com/despacito.jpg;3:48;;;;
+song;Hello;25;2015;Adele;https://example.com/hello.jpg;4:55;;;;
+song;Closer;Collage;2016;The Chainsmokers;https://example.com/closer.jpg;4:04;;;;
+song;Someone Like You;21;2011;Adele;https://example.com/someone_like_you.jpg;4:45;;;;
+song;Blinding Lights;After Hours;2019;The Weeknd;https://example.com/blinding_lights.jpg;3:20;;;;
+song;Thinking Out Loud;× (Multiply);2014;Ed Sheeran;https://example.com/thinking_out_loud.jpg;4:41;;;;
+song;Waka Waka (This Time for Africa);Listen Up! The Official 2010 FIFA World Cup Album;2010;Shakira;https://example.com/waka_waka.jpg;3:22;;;;
+song;Can't Stop the Feeling!;Trolls (Original Motion Picture Soundtrack);2016;Justin Timberlake;https://example.com/cant_stop_the_feeling.jpg;4:19;;;;
+song;Cheap Thrills;This Is Acting;2016;Sia;https://example.com/cheap_thrills.jpg;3:31;;;;
+song;Sorry;Purpose;2015;Justin Bieber;https://example.com/sorry.jpg;3:20;;;;
+song;Roar;Prism;2013;Katy Perry;https://example.com/roar.jpg;3:42;;;;
+song;Counting Stars;Native;2013;OneRepublic;https://example.com/counting_stars.jpg;4:17;;;;
+song;All About That Bass;Title;2014;Meghan Trainor;https://example.com/all_about_that_bass.jpg;3:10;;;;
+song;Party Rock Anthem;Sorry for Party Rocking;2011;LMFAO;https://example.com/party_rock_anthem.jpg;4:23;;;;
+song;Radioactive;Night Visions;2012;Imagine Dragons;https://example.com/radioactive.jpg;3:07;;;;
+song;Wake Me Up;True;2013;Avicii;https://example.com/wake_me_up.jpg;4:09;;;;
+song;We Found Love;Talk That Talk;2011;Rihanna;https://example.com/we_found_love.jpg;3:35;;;;
+song;Happy;Despicable Me 2 (Original Motion Picture Soundtrack);2013;Pharrell Williams;https://example.com/happy.jpg;3:52;;;;
+song;Love Yourself;Purpose;2015;Justin Bieber;https://example.com/love_yourself.jpg;3:53;;;;
+song;Rolling in the Deep;21;2010;Adele;https://example.com/rolling_in_the_deep.jpg;3:48;;;;
+song;Shape of My Heart;Ten Summoner's Tales;1993;Sting;https://example.com/shape_of_my_heart.jpg;4:38;;;;
+song;Hallelujah;Various Positions;1984;Leonard Cohen;https://example.com/hallelujah.jpg;4:36;;;;
+song;Bohemian Rhapsody;A Night at the Opera;1975;Queen;https://example.com/bohemian_rhapsody.jpg;5:55;;;;
+song;Hotel;Hotel California;1976;Eagles;https://example.com/hotel.jpg;6:30;;;;
