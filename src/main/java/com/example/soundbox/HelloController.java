@@ -65,7 +65,10 @@ public class HelloController {
      * @return we return index i. The index contain a song type String that can be show on the label stateSong
      */
     @FXML
-    protected int researchSong() {
+    protected int research() {
+
+        //ToDo ajouter la fonction de convertissement en minuscules
+
         String research = researchBarre.getText();
 
         boolean found = false;
@@ -86,12 +89,12 @@ public class HelloController {
                     System.out.println("search");
                 }
             }
-        } else if (interpreterlist.contains(research)) {
+        } else if (HelloApplication.getMainInterpreterList().contains(research)) {
             //i = -1;
-            while (i < interpreterlist.size()) {
+            while (i < HelloApplication.getMainInterpreterList().size()) {
                 i++;
-                if (interpreterlist.get(i).equalsIgnoreCase(research)) {
-                    System.out.println(interpreterlist.get(i));
+                if (HelloApplication.getMainInterpreterList().get(i).equalsIgnoreCase(research)) {
+                    System.out.println(HelloApplication.getMainInterpreterList().get(i));
                     System.out.println(i);
                     break;
                 } else {
@@ -119,7 +122,7 @@ public class HelloController {
         String songResearchBarre = researchBarre.getText();
         if (songResearchBarre.equals("L'élément recherché n'existe pas")) {
            stateSong.setText(" ");
-        } else if (HelloApplication.getNameList().contains(songResearchBarre) || interpreterlist.contains(songResearchBarre)) {
+        } else if (HelloApplication.getNameList().contains(songResearchBarre) || HelloApplication.getMainInterpreterList().contains(songResearchBarre)) {
             playlistBox.getItems().add(songResearchBarre);
             researchBarre.clear();
         } else {
@@ -147,7 +150,7 @@ public class HelloController {
     /**
      * Method stop the song which is on the stateSong
      * The method check if there is a String on the stateSong and put " est en pause " or " est en cours " or " Pas de musique" if stateSong is empty.
-     * This is better because we this button don't work with the method researchSong because it's more complicated
+     * This is better because we this button don't work with the method research because it's more complicated
      * to do the difference between researchButton and Sélection musique.
      */
     @FXML
@@ -167,7 +170,7 @@ public class HelloController {
     /**
      * Method play the song which is on the stateSong
      * The method check if there is a String on the stateSong and put " est en pause " or " est en cours " or " Pas de musique" if stateSong is empty.
-     * This is better because we this button don't work with the method researchSong because it's more complicated
+     * This is better because we this button don't work with the method research because it's more complicated
      * to do the difference between researchButton and Sélection musique.
      */
     @FXML
