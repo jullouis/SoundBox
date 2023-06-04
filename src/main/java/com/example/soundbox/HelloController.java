@@ -2,10 +2,7 @@ package com.example.soundbox;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -37,6 +34,11 @@ public class HelloController {
     private GridPane songDatas;
     @FXML
     private int currentIndex = -1;
+    @FXML
+    private ImageView cover;
+
+    @FXML
+    private FileChooser fileChooser;
 
 
 
@@ -194,8 +196,9 @@ public class HelloController {
      */
     @FXML
     protected void stopSong() {
-        songDatas.setVisible(true);
+        songDatas.setVisible(false);
         getSongDatas();
+        cover.setVisible(false);
         String currentSong = stateSong.getText();
         if (currentSong.equals("L'élément recherché n'existe pas")) {
             stateSong.setText("Aucune musique");
@@ -214,10 +217,12 @@ public class HelloController {
      * This is better because we this button don't work with the method research because it's more complicated
      * to do the difference between researchButton and Sélection musique.
      */
+    // TODO: 04.06.2023 il faut trouver un  moyen pour stocker à quelque part les liens des images des titres
     @FXML
     protected void playSong() {
         songDatas.setVisible(true);
         getSongDatas();
+        cover.setVisible(true);
         String currentSong = stateSong.getText();
         if (currentSong.equals("L'élément recherché n'existe pas")) {
             stateSong.setText("Aucune musique");
@@ -225,6 +230,18 @@ public class HelloController {
             if (!currentSong.endsWith(" est en cours")) {
                 currentSong = currentSong.replace(" est en pause", "");
                 stateSong.setText(currentSong + " est en cours");
+
+                //Test Affichage image avec titre Waka Waka
+                Image image = new Image("C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Waka Waka.jpg");
+                cover.setImage(image);
+                
+                // Récupérer le chemin/nom de fichier d'image correspondant à la chanson en cours
+                //int index = research(currentSong);
+                //String imagePath = imageList.get(index);
+
+                // Afficher l'image correspondante
+                //Image image = new Image("file:" + imagePath); // Préfixe "file:" pour charger à partir d'un chemin de fichier
+                //currentCover.setImage(image);
             }
 
         }
