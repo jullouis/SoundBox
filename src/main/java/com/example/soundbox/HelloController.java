@@ -259,7 +259,7 @@ public class HelloController {
                 //cover.setImage(image);
 
                 // Chemin du fichier CSV
-                String csvFilePath = ("C:\\Projet_Informatique\\SoundBox\\data\\database\\songs_db.csv");
+                String csvFilePath = ("data/database/songs_db.csv");
 
                 try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
                     // Map pour stocker les correspondances nom de la musique - chemin de l'image

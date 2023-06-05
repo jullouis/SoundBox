@@ -69,7 +69,7 @@
                      <effect>
                         <ColorInput />
                      </effect></ImageView>
-                  <ComboBox fx:id="proposalList" layoutX="241.0" layoutY="73.0" prefHeight="26.0" prefWidth="246.0" />
+                  <ComboBox fx:id="proposalList" layoutX="241.0" layoutY="73.0" onAction="#setProposalList" prefHeight="26.0" prefWidth="246.0" />
                </children>
             </Pane>
          </children>
