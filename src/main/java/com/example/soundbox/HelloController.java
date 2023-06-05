@@ -1,5 +1,5 @@
 package com.example.soundbox;
-import javafx.beans.value.ChangeListener;
+//import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,7 +8,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import java.io.File;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+//import java.util.ArrayList;
 
 /**
  * Create element for userinterface
@@ -37,9 +43,8 @@ public class HelloController {
     @FXML
     private ImageView cover;
 
-    @FXML
-    private FileChooser fileChooser;
-
+    //@FXML
+    //private FileChooser fileChooser;
 
 
     //ArrayList<String> albumlist = new ArrayList<>();
@@ -84,7 +89,6 @@ public class HelloController {
      */
     @FXML
     protected int researchButton() {
-
         //ToDo ajouter la fonction de convertissement en minuscules
         String researchedText = researchBarre.getText();
         int index = research(researchedText);
@@ -93,7 +97,8 @@ public class HelloController {
     }
 
     protected int research(String researchedSong) {
-
+        songDatas.setVisible(false);
+        cover.setVisible(false);
         boolean found = false;
         int i = 0;
 
@@ -133,6 +138,7 @@ public class HelloController {
         }
         return i;
     }
+
     @FXML
     protected void getSongDatas() {
         if (currentIndex != 0) {
@@ -159,15 +165,17 @@ public class HelloController {
     // TODO: 04.06.2023 Faire la partie pour interpreter
     protected void addSongPlaylist() {
         String songResearchBarre = researchBarre.getText();
+
         if (songResearchBarre.equals("L'élément recherché n'existe pas")) {
-           stateSong.setText(" ");
-        } else if (HelloApplication.getNameList().contains(songResearchBarre)){//&& HelloApplication.getMainInterpreterList().contains(songResearchBarre)) {
+            stateSong.setText(" ");
+        } else if (HelloApplication.getNameList().contains(songResearchBarre)) {//&& HelloApplication.getMainInterpreterList().contains(songResearchBarre)) {
             playlistBox.getItems().add(songResearchBarre);
             researchBarre.clear();
         } else {
             stateSong.setText("Impossible d'ajouter dans la playlist");
         }
     }
+
     /**
      * Method which delete a song of a playlist
      */
@@ -175,6 +183,7 @@ public class HelloController {
     protected void deleteSongPlaylist(ActionEvent event) {
         String selectedSong = playlistBox.getValue();
         String currentSong = stateSong.getText();
+
         if (selectedSong != null && selectedSong.equals(currentSong)) {
             stateSong.setText("");
         }
@@ -186,6 +195,8 @@ public class HelloController {
         stateSong.setText(playlistBox.getValue());
         songDatas.setVisible(true);
         getSongDatas();
+        cover.setVisible(false);
+
     }
 
     /**
@@ -196,57 +207,88 @@ public class HelloController {
      */
     @FXML
     protected void stopSong() {
-        songDatas.setVisible(false);
         getSongDatas();
-        cover.setVisible(false);
         String currentSong = stateSong.getText();
-        if (currentSong.equals("L'élément recherché n'existe pas")) {
+
+        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist")) {
             stateSong.setText("Aucune musique");
+            songDatas.setVisible(false);
+            cover.setVisible(false);
         } else if (!currentSong.isEmpty() && !currentSong.equals("Aucune musique")) {
             if (!currentSong.endsWith(" est en pause")) {
                 currentSong = currentSong.replace(" est en cours", "");
                 stateSong.setText(currentSong + " est en pause");
+                songDatas.setVisible(false);
+                cover.setVisible(false);
             }
-        }
 
+        }
     }
+
 
     /**
      * Method play the song which is on the stateSong
      * The method check if there is a String on the stateSong and put " est en pause " or " est en cours " or " Pas de musique" if stateSong is empty.
      * This is better because we this button don't work with the method research because it's more complicated
      * to do the difference between researchButton and Sélection musique.
+     * We put inside this method codes which we can put on the cover of the song searching.
      */
-    // TODO: 04.06.2023 il faut trouver un  moyen pour stocker à quelque part les liens des images des titres
     @FXML
     protected void playSong() {
-        songDatas.setVisible(true);
         getSongDatas();
-        cover.setVisible(true);
         String currentSong = stateSong.getText();
-        if (currentSong.equals("L'élément recherché n'existe pas")) {
+
+        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist")) {
             stateSong.setText("Aucune musique");
+            songDatas.setVisible(false);
+            cover.setVisible(false);
         } else if (!currentSong.isEmpty() && !currentSong.equals("Aucune musique")) {
             if (!currentSong.endsWith(" est en cours")) {
                 currentSong = currentSong.replace(" est en pause", "");
                 stateSong.setText(currentSong + " est en cours");
+                songDatas.setVisible(true);
+                cover.setVisible(true);
 
                 //Test Affichage image avec titre Waka Waka
-                Image image = new Image("C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Waka Waka.jpg");
-                cover.setImage(image);
-                
-                // Récupérer le chemin/nom de fichier d'image correspondant à la chanson en cours
-                //int index = research(currentSong);
-                //String imagePath = imageList.get(index);
+                //Image image = new Image("C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Waka Waka.jpg");
+                //cover.setImage(image);
 
-                // Afficher l'image correspondante
-                //Image image = new Image("file:" + imagePath); // Préfixe "file:" pour charger à partir d'un chemin de fichier
-                //currentCover.setImage(image);
+                // Chemin du fichier CSV
+                String csvFilePath = ("C:\\Projet_Informatique\\SoundBox\\data\\database\\songs_db.csv");
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+                    // Map pour stocker les correspondances nom de la musique - chemin de l'image
+                    Map<String, String> songImageMap = new HashMap<>();
+
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        String[] parts = line.split(";");  // Séparateur CSV, ajustez-le si nécessaire
+                        String songName = parts[1];  // Colonne contenant le nom de la musique
+                        String imagePath = parts[5];  // Colonne contenant le chemin de l'image
+
+                        songImageMap.put(songName, imagePath);
+                    }
+
+                    // Récupération du chemin de l'image correspondant à la musique recherchée
+                    String imagePath = songImageMap.get(currentSong);
+
+                    if (imagePath != null) {
+                        // Création de l'objet Image
+                        Image image = new Image(new File(imagePath).toURI().toString());
+
+                        // Affichage de l'image dans l'objet ImageView
+                        cover.setImage(image);
+                    }
+                } catch (IOException e) {
+                    // Gérer les exceptions liées à la lecture du fichier CSV
+                    e.printStackTrace();
+                }
+
             }
 
         }
 
     }
-
 }
+
 
