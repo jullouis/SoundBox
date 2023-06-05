@@ -64,7 +64,7 @@ public class HelloApplication extends Application {
                 if (columns.length >= 6 && !columns[5].isEmpty()) {
                     durationList.add(columns[5]);
                 }
-                if (columns[0] == "album"){
+                if (columns[0].equals("album")){
                         songList.add(columns[6]);
                 }
 

@@ -26,7 +26,8 @@ public class HelloController {
     private Label stateSong;
     @FXML
     private ComboBox<String> playlistBox;
-
+    @FXML
+    private ComboBox<String> proposalList;
     @FXML
     private Label title;
     @FXML
@@ -35,7 +36,6 @@ public class HelloController {
     private Label artist;
     @FXML
     private Label duration;
-
     @FXML
     private GridPane songDatas;
     @FXML
@@ -105,7 +105,7 @@ public class HelloController {
         // Recherche dans la liste des chansons
 
         System.out.println(i);
-        if (HelloApplication.getNameList().contains(researchedSong)) {
+        if (HelloApplication.getNameList().stream().anyMatch(researchedSong::equalsIgnoreCase)){//HelloApplication.getNameList().contains(researchedSong)) {
             while (i < HelloApplication.getNameList().size()) {
                 i++;
                 if (HelloApplication.getNameList().get(i).equalsIgnoreCase(researchedSong)) {
@@ -130,7 +130,7 @@ public class HelloController {
             }
         }
         if (found) {
-            stateSong.setText(researchedSong);
+            stateSong.setText(HelloApplication.getNameList().get(i));
         } else {
             stateSong.setText("L'élément recherché n'existe pas");
             currentIndex = 0; // rénitialiser l'index
@@ -197,6 +197,11 @@ public class HelloController {
         getSongDatas();
         cover.setVisible(false);
 
+    }
+
+    @FXML
+    protected void setProposalList(){
+        System.out.println("Proposition");
     }
 
     /**
