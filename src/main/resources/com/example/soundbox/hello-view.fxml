@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorInput?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,7 +65,10 @@
                         <Label fx:id="duration" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Durée: " GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <ImageView fx:id="cover" fitHeight="201.0" fitWidth="256.0" layoutX="230.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="cover" fitHeight="201.0" fitWidth="256.0" layoutX="230.0" layoutY="111.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <effect>
+                        <ColorInput />
+                     </effect></ImageView>
                </children>
             </Pane>
          </children>
