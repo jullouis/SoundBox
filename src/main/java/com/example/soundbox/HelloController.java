@@ -216,20 +216,24 @@ public class HelloController {
         proposalList.getItems().clear();
         proposalList.getItems().addAll(filteredSongs);
     }
-
+    // filtrer les musiques en fonction
     private String[] filterSongs(String searchText) {
+        // Création d'une liste pour stocker les chansons filtrées
         List<String> filteredSongs = new ArrayList<>();
+        // Parcours de la liste des chansons disponibles
         for (String song : HelloApplication.getNameList()) {
+            // Vérification si le nom de la chanson commence par le texte de recherche (ignorant la casse)
             if (song.toLowerCase().startsWith(searchText.toLowerCase())) {
+                // Ajout de la chanson à la liste filtrée
                 filteredSongs.add(song);
             }
         }
-
+        // Conversion de la liste filtrée en tableau de chaînes et le retourner
         return filteredSongs.toArray(new String[0]);
     }
     @FXML
     protected void selectSongFromList(MouseEvent event) {
-        if (event.getClickCount() == 2) { // Vérifie si un double-clic a été effectué
+        if (event.getClickCount() == 1) { // Vérifie si un clic a été effectué
             String selectedSong = proposalList.getSelectionModel().getSelectedItem();
             if (selectedSong != null) {
                 researchBarre.setText(selectedSong);
