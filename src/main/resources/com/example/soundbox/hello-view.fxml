@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorInput?>
 <?import javafx.scene.image.Image?>
@@ -37,11 +38,11 @@
                   </ImageView>
                   <Button layoutX="403.0" layoutY="433.0" mnemonicParsing="false" onAction="#playSong" text="Play" />
                   <Button layoutX="265.0" layoutY="433.0" mnemonicParsing="false" onAction="#stopSong" text="Pause" />
-                  <TextField fx:id="researchBarre" layoutX="329.0" layoutY="39.0" />
-                  <Button layoutX="241.0" layoutY="39.0" mnemonicParsing="false" onAction="#researchButton" text="Recherche" />
+                  <TextField fx:id="researchBarre" layoutX="329.0" layoutY="41.0" onKeyTyped="#setProposalList" />
+                  <Button layoutX="241.0" layoutY="41.0" mnemonicParsing="false" onAction="#researchButton" prefHeight="25.0" prefWidth="71.0" text="Clik" />
                   <Button layoutX="30.0" layoutY="41.0" mnemonicParsing="false" onAction="#addSongPlaylist" text="Ajouter Musique" />
                   <Button layoutX="30.0" layoutY="86.0" mnemonicParsing="false" onAction="#deleteSongPlaylist" text="Supprimer Musique" />
-                  <Label fx:id="stateSong" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="4.0" layoutY="305.0" prefHeight="58.0" prefWidth="707.0" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="stateSong" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="5.0" layoutY="354.0" prefHeight="58.0" prefWidth="707.0" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="32.0" />
                      </font></Label>
@@ -65,11 +66,12 @@
                         <Label fx:id="duration" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Durée: " GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <ImageView fx:id="cover" fitHeight="201.0" fitWidth="256.0" layoutX="230.0" layoutY="162.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cover" fitHeight="201.0" fitWidth="256.0" layoutX="230.0" layoutY="138.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <effect>
                         <ColorInput />
                      </effect></ImageView>
-                  <ComboBox fx:id="proposalList" layoutX="241.0" layoutY="73.0" onAction="#setProposalList" prefHeight="26.0" prefWidth="246.0" />
+                  <ListView fx:id="proposalList" layoutX="329.0" layoutY="79.0" onMouseClicked="#selectSongFromList" prefHeight="40.0" prefWidth="149.0" />
+                  <Button layoutX="241.0" layoutY="86.0" mnemonicParsing="false" onAction="#clearReserach" prefHeight="25.0" prefWidth="71.0" text="Clear" />
                </children>
             </Pane>
          </children>

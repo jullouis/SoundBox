@@ -1,18 +1,21 @@
 package com.example.soundbox;
-//import javafx.beans.value.ChangeListener;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 //import java.util.ArrayList;
 
@@ -27,8 +30,6 @@ public class HelloController {
     @FXML
     private ComboBox<String> playlistBox;
     @FXML
-    private ComboBox<String> proposalList;
-    @FXML
     private Label title;
     @FXML
     private Label year;
@@ -42,9 +43,12 @@ public class HelloController {
     private int currentIndex = -1;
     @FXML
     private ImageView cover;
+    @FXML
+    private ListView<String> proposalList;
+
 
     //@FXML
-    //private FileChooser fileChooser;
+
 
 
     //ArrayList<String> albumlist = new ArrayList<>();
@@ -140,6 +144,11 @@ public class HelloController {
     }
 
     @FXML
+    protected void clearReserach() {
+        researchBarre.clear();
+        proposalList.getItems().clear();
+        }
+    @FXML
     protected void getSongDatas() {
         if (currentIndex != 0) {
             title.setText(HelloApplication.getNameList().get(currentIndex));
@@ -200,9 +209,35 @@ public class HelloController {
     }
 
     @FXML
-    protected void setProposalList(){
-        System.out.println("Proposition");
+    protected void setProposalList() {
+        String searchText = researchBarre.getText();
+        String[] filteredSongs = filterSongs(searchText);
+
+        proposalList.getItems().clear();
+        proposalList.getItems().addAll(filteredSongs);
     }
+
+    private String[] filterSongs(String searchText) {
+        List<String> filteredSongs = new ArrayList<>();
+        for (String song : HelloApplication.getNameList()) {
+            if (song.toLowerCase().startsWith(searchText.toLowerCase())) {
+                filteredSongs.add(song);
+            }
+        }
+
+        return filteredSongs.toArray(new String[0]);
+    }
+    @FXML
+    protected void selectSongFromList(MouseEvent event) {
+        if (event.getClickCount() == 2) { // Vérifie si un double-clic a été effectué
+            String selectedSong = proposalList.getSelectionModel().getSelectedItem();
+            if (selectedSong != null) {
+                researchBarre.setText(selectedSong);
+            }
+        }
+    }
+
+
 
     /**
      * Method stop the song which is on the stateSong
@@ -280,6 +315,7 @@ public class HelloController {
                     if (imagePath != null) {
                         // Création de l'objet Image
                         Image image = new Image(new File(imagePath).toURI().toString());
+                        System.out.println(new File(imagePath).toURI().toString());
 
                         // Affichage de l'image dans l'objet ImageView
                         cover.setImage(image);

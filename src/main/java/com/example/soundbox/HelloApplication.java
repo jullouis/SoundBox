@@ -61,8 +61,9 @@ public class HelloApplication extends Application {
                 yearList.add(columns[2]);
                 mainInterpreterList.add(columns[3]);
                 coverUrlList.add(columns[4]);
-                if (columns.length >= 6 && !columns[5].isEmpty()) {
-                    durationList.add(columns[5]);
+                // code modifié car il n'affichait pas le temps remplacée columns.length >= 6 par columns.length >= 7 et le temps est sur la colonne 6 et pas 5
+                if (columns.length >= 7 && !columns[5].isEmpty()) {
+                    durationList.add(columns[6]);
                 }
                 if (columns[0].equals("album")){
                         songList.add(columns[6]);
