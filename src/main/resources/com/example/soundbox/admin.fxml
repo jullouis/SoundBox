@@ -24,17 +24,17 @@
                   <Button layoutX="358.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteSong" text="Supprimer Musique" />
                   <Button layoutX="220.0" layoutY="424.0" mnemonicParsing="false" onAction="#modSong" text="Modifier Musique" />
                   <Button layoutX="108.0" layoutY="304.0" mnemonicParsing="false" onAction="#researchSong" text="Ajouter image" />
-                  <TextField fx:id="researchBarre1" layoutX="283.0" layoutY="131.0" text="Nom" />
-                  <TextField fx:id="researchBarre2" layoutX="283.0" layoutY="173.0" text="Année" />
-                  <TextField fx:id="researchBarre3" layoutX="283.0" layoutY="214.0" text="Chanteur" />
-                  <TextField fx:id="researchBarre31" layoutX="283.0" layoutY="252.0" text="Durée" />
-                  <TextField fx:id="researchBarre32" layoutX="283.0" layoutY="292.0" text="Feat" />
+                  <TextField fx:id="adminName" layoutX="283.0" layoutY="131.0" text="Nom" />
+                  <TextField fx:id="adminYear" layoutX="283.0" layoutY="173.0" text="Année" />
+                  <TextField fx:id="adminMainInterpreter" layoutX="283.0" layoutY="214.0" text="Chanteur" />
+                  <TextField fx:id="adminDuration" layoutX="283.0" layoutY="252.0" text="Durée" />
+                  <TextField fx:id="adminFeat" layoutX="283.0" layoutY="292.0" text="Feat" />
                   <ImageView fitHeight="141.0" fitWidth="187.0" layoutX="83.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../../Users/natha/Downloads/ajouter%20des%20photos.PNG" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="researchBarre11" layoutX="283.0" layoutY="334.0" text="Album" />
+                  <TextField fx:id="adminAlbum" layoutX="283.0" layoutY="334.0" text="Album" />
                   <Button layoutX="521.0" layoutY="234.0" mnemonicParsing="false" onAction="#researchSong" text="Ajouter MP3" />
                </children>
             </Pane>
