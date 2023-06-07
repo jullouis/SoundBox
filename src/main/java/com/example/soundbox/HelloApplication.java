@@ -127,14 +127,16 @@ public class HelloApplication extends Application {
     public static ArrayList<String> getMainInterpreterList(){ // Donner la liste nameList pour plus loin
         return mainInterpreterList;
     }
-    public static ArrayList<String> getCoverUrlList(){ // Donner la liste nameList pour plus loin
-        return coverUrlList;
-    }
+
+    //public static ArrayList<String> getCoverUrlList(){ // Donner la liste nameList pour plus loin
+       // return coverUrlList;
+    //}
     public static ArrayList<String> getDurationList(){
         return durationList;
     }
-    public static ArrayList<String> getSongList(){ // Donner la liste nameList pour plus loin
-        return songList;
-    }
+
+    //public static ArrayList<String> getSongList(){ // Donner la liste nameList pour plus loin
+        //return songList;
+    //}
 
 }

@@ -95,6 +95,7 @@ public class HelloController {
     protected int researchButton() {
         //ToDo ajouter la fonction de convertissement en minuscules
         songDatas.setVisible(false);
+        cover.setVisible(false);
         String researchedText = researchBarre.getText();
         int index = research(researchedText);
         currentIndex = index;
@@ -136,10 +137,11 @@ public class HelloController {
         }
         if (found) {
             stateSong.setText(HelloApplication.getNameList().get(i));
-        } else {
+        } else if (researchBarre.getText().toString().isEmpty()) {
+            stateSong.setText("Aucune musique recherchée");
+        }else {
             stateSong.setText("L'élément recherché n'existe pas");
             currentIndex = -1; // rénitialiser l'index
-
         }
         return i;
     }
