@@ -47,8 +47,9 @@ public class HelloController {
     private ListView<String> proposalList;
 
 
-    //@FXML
 
+
+    //@FXML
 
 
     //ArrayList<String> albumlist = new ArrayList<>();
@@ -111,7 +112,7 @@ public class HelloController {
         // Recherche dans la liste des chansons
 
         System.out.println(i);
-        if (HelloApplication.getNameList().stream().anyMatch(researchedSong::equalsIgnoreCase)){//HelloApplication.getNameList().contains(researchedSong)) {
+        if (HelloApplication.getNameList().stream().anyMatch(researchedSong::equalsIgnoreCase)) {//HelloApplication.getNameList().contains(researchedSong)) {
             while (i < HelloApplication.getNameList().size()) {
                 i++;
                 if (HelloApplication.getNameList().get(i).equalsIgnoreCase(researchedSong)) {
@@ -139,19 +140,15 @@ public class HelloController {
             stateSong.setText(HelloApplication.getNameList().get(i));
         } else if (researchBarre.getText().toString().isEmpty()) {
             stateSong.setText("Aucune musique recherchée");
-        }else {
+        } else {
             stateSong.setText("L'élément recherché n'existe pas");
             currentIndex = -1; // rénitialiser l'index
         }
+        researchBarre.clear();
+        proposalList.getItems().clear();
         return i;
     }
 
-    @FXML
-    protected void clearReserach() {
-        // supprimer les textes dans la barre de recherche et dans la listView
-        researchBarre.clear();
-        proposalList.getItems().clear();
-        }
     @FXML
     protected void getSongDatas() {
         if (currentIndex != 0) {
@@ -159,8 +156,7 @@ public class HelloController {
             year.setText(HelloApplication.getYearList().get(currentIndex));
             artist.setText(HelloApplication.getMainInterpreterList().get(currentIndex));
             duration.setText(HelloApplication.getDurationList().get(currentIndex));
-        }
-        else {
+        } else {
             // Gérer le cas où l'élément n'a pas été trouvé ou n'existe pas
             title.setText("");
             year.setText("");
@@ -182,6 +178,8 @@ public class HelloController {
 
         if (songResearchBarre.equals("L'élément recherché n'existe pas")) {
             stateSong.setText(" ");
+            researchBarre.clear();
+            proposalList.getItems().clear();
         } else if (HelloApplication.getNameList().contains(songResearchBarre)) {//&& HelloApplication.getMainInterpreterList().contains(songResearchBarre)) {
             playlistBox.getItems().add(songResearchBarre);
             researchBarre.clear();
@@ -206,10 +204,16 @@ public class HelloController {
 
     @FXML
     protected void selectionSongPlaylist(ActionEvent event) {
-        stateSong.setText(playlistBox.getValue());
-        songDatas.setVisible(true);
-        getSongDatas();
-        cover.setVisible(false);
+        String selectedSong = playlistBox.getValue();
+        if (selectedSong != null) {
+            int index = HelloApplication.getNameList().indexOf(selectedSong);
+            if (index >= 0) { // permet de prendre les bonnes données selon l'index de la musique
+                currentIndex = index;
+                stateSong.setText(selectedSong);
+                songDatas.setVisible(true);
+                cover.setVisible(true);
+            }
+        }
 
     }
 
@@ -221,6 +225,7 @@ public class HelloController {
         proposalList.getItems().clear();
         proposalList.getItems().addAll(filteredSongs);
     }
+
     // filtrer les musiques en fonction
     private String[] filterSongs(String searchText) {
         // Création d'une liste pour stocker les chansons filtrées
@@ -236,6 +241,7 @@ public class HelloController {
         // Conversion de la liste filtrée en tableau de chaînes et le retourner
         return filteredSongs.toArray(new String[0]);
     }
+
     @FXML
     protected void selectSongFromList(MouseEvent event) {
         if (event.getClickCount() == 1) { // Vérifie si un clic a été effectué
@@ -245,7 +251,6 @@ public class HelloController {
             }
         }
     }
-
 
 
     /**
@@ -259,20 +264,33 @@ public class HelloController {
         getSongDatas();
         String currentSong = stateSong.getText();
 
-        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist")) {
-            stateSong.setText("Aucune musique");
+        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée")){
+            stateSong.setText("Impossible à jouer");
             songDatas.setVisible(false);
             cover.setVisible(false);
-        } else if (!currentSong.isEmpty() && !currentSong.equals("Aucune musique")) {
-            if (!currentSong.endsWith(" est en pause")) {
+        }
+        else if (currentSong.equals("Impossible à jouer") ){
+            stateSong.setText("Erreur");
+            songDatas.setVisible(false);
+            cover.setVisible(false);
+            System.out.println("else if 1 pause");
+
+        }
+        else if (!currentSong.endsWith(" est en pause") && !currentSong.equals("Erreur")) {
+                // Le texte de l'état actuel ne se termine pas par " est en pause"
+                // Cela signifie qu'il y a un changement d'état de pause à lecture
+                // Donc, nous affichons le texte supplémentaire et mettons à jour la visibilité des éléments.
                 currentSong = currentSong.replace(" est en cours", "");
                 stateSong.setText(currentSong + " est en pause");
                 songDatas.setVisible(false);
                 cover.setVisible(false);
+            System.out.println("else if 2 pause");
             }
 
-        }
     }
+
+
+
 
 
     /**
@@ -287,17 +305,29 @@ public class HelloController {
         getSongDatas();
         String currentSong = stateSong.getText();
 
-        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist")) {
-            stateSong.setText("Aucune musique");
+        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée")) {
+            stateSong.setText("Impossible à jouer");
             songDatas.setVisible(false);
             cover.setVisible(false);
-        } else if (!currentSong.isEmpty() && !currentSong.equals("Aucune musique")) {
-            if (!currentSong.endsWith(" est en cours")) {
+            System.out.println("if playsong");
+        }
+        else if (currentSong.equals("Impossible à jouer") ){
+            stateSong.setText("Erreur");
+            songDatas.setVisible(false);
+            cover.setVisible(false);
+            System.out.println("else if 1 playsong");
+
+        }
+        else if (!currentSong.endsWith(" est en cours") && !currentSong.equals("Erreur")) {
+                // Le texte de l'état actuel ne se termine pas par " est en cours"
+                // Cela signifie qu'il y a un changement d'état de pause à lecture
+                // Donc, nous affichons le texte supplémentaire et mettons à jour la visibilité des éléments.
+                //La méthode endsWith() est une méthode disponible pour les objets de type String en Java. Elle permet de vérifier si une chaîne de caractères se termine par une autre chaîne spécifiée.
                 currentSong = currentSong.replace(" est en pause", "");
                 stateSong.setText(currentSong + " est en cours");
                 songDatas.setVisible(true);
                 cover.setVisible(true);
-
+                System.out.println("else if 2 playsong");
 
 
                 // Chemin du fichier CSV
@@ -322,7 +352,7 @@ public class HelloController {
                     if (imagePath != null) {
                         // Création de l'objet Image
                         Image image = new Image(new File(imagePath).toURI().toString());
-                       // image = new Image("file:C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Damso.jpg");
+                        // image = new Image("file:C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Damso.jpg");
                         System.out.println(new File(imagePath).toURI().toString());
 
                         // Affichage de l'image dans l'objet ImageView
@@ -337,8 +367,9 @@ public class HelloController {
             }
 
         }
-
-    }
 }
+
+
+
 
 
