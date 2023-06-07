@@ -42,7 +42,7 @@ public class HelloController {
     @FXML
     private int currentIndex = -1;
     @FXML
-    private ImageView cover;
+    protected ImageView cover;
     @FXML
     private ListView<String> proposalList;
 
@@ -94,15 +94,16 @@ public class HelloController {
     @FXML
     protected int researchButton() {
         //ToDo ajouter la fonction de convertissement en minuscules
+        songDatas.setVisible(false);
         String researchedText = researchBarre.getText();
         int index = research(researchedText);
         currentIndex = index;
         return index;
+
     }
 
     protected int research(String researchedSong) {
         songDatas.setVisible(false);
-        cover.setVisible(false);
         boolean found = false;
         int i = 0;
 
@@ -137,7 +138,7 @@ public class HelloController {
             stateSong.setText(HelloApplication.getNameList().get(i));
         } else {
             stateSong.setText("L'élément recherché n'existe pas");
-            currentIndex = 0; // rénitialiser l'index
+            currentIndex = -1; // rénitialiser l'index
 
         }
         return i;
@@ -145,6 +146,7 @@ public class HelloController {
 
     @FXML
     protected void clearReserach() {
+        // supprimer les textes dans la barre de recherche et dans la listView
         researchBarre.clear();
         proposalList.getItems().clear();
         }
@@ -155,7 +157,8 @@ public class HelloController {
             year.setText(HelloApplication.getYearList().get(currentIndex));
             artist.setText(HelloApplication.getMainInterpreterList().get(currentIndex));
             duration.setText(HelloApplication.getDurationList().get(currentIndex));
-        } else {
+        }
+        else {
             // Gérer le cas où l'élément n'a pas été trouvé ou n'existe pas
             title.setText("");
             year.setText("");
@@ -293,9 +296,7 @@ public class HelloController {
                 songDatas.setVisible(true);
                 cover.setVisible(true);
 
-                //Test Affichage image avec titre Waka Waka
-                //Image image = new Image("C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Waka Waka.jpg");
-                //cover.setImage(image);
+
 
                 // Chemin du fichier CSV
                 String csvFilePath = ("data/database/songs_db.csv");
@@ -319,10 +320,12 @@ public class HelloController {
                     if (imagePath != null) {
                         // Création de l'objet Image
                         Image image = new Image(new File(imagePath).toURI().toString());
+                       // image = new Image("file:C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Damso.jpg");
                         System.out.println(new File(imagePath).toURI().toString());
 
                         // Affichage de l'image dans l'objet ImageView
                         cover.setImage(image);
+                        //cover.setImage(new Image("C:\\Projet_Informatique\\SoundBox\\src\\main\\resources\\pics\\Damso.jpg"));
                     }
                 } catch (IOException e) {
                     // Gérer les exceptions liées à la lecture du fichier CSV

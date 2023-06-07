@@ -66,12 +66,10 @@
                         <Label fx:id="duration" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Durée: " GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <ImageView fx:id="cover" fitHeight="201.0" fitWidth="256.0" layoutX="230.0" layoutY="138.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                     <effect>
-                        <ColorInput />
-                     </effect></ImageView>
                   <ListView fx:id="proposalList" layoutX="329.0" layoutY="79.0" onMouseClicked="#selectSongFromList" prefHeight="40.0" prefWidth="149.0" />
                   <Button layoutX="241.0" layoutY="86.0" mnemonicParsing="false" onAction="#clearReserach" prefHeight="25.0" prefWidth="71.0" text="Clear" />
+                  <ImageView fx:id="cover" fitHeight="201.0" fitWidth="256.0" layoutX="241.0" layoutY="138.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                  </ImageView>
                </children>
             </Pane>
          </children>

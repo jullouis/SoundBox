@@ -1,6 +1,10 @@
 type;Name;album;year;mainInterpreter;coverURL;duration;songList;numberSongs;feat;songURL
-song;Rememeber the time;Dangerous;1991;Michael Jackson;URL;;;;;
-song;Macarena;2017;Damso;Mosaïque Solitaire;pics/Damso.jpg;3:35;;;;;
+song;One More Time;Discovery;2001;Daft Punk;Discovery.jpg;5:20;;;;
+song;Aerodynamic;Discovery;2001;Daft Punk;Discovery.jpg;3:27;;;;
+song;Digital Love;Discovery;2001;Daft Punk;Discovery.jpg;4:58;;;;
+song;Harder, Better, Faster, Stronger;Discovery;2001;Daft Punk;Discovery.jpg;3:43;;;;
+song;Rememeber the time;Dangerous;1991;Michael Jackson;URL;;;;
+song;Macarena;2017;Damso;Mosaïque Solitaire;src/main/resources/pics/Damso.jpg;3:35;;;;
 song;Shape of You;÷ (Divide);2017;Ed Sheeran;https://example.com/shape_of_you.jpg;3:53;;;;
 song;Uptown Funk;Uptown Special;2014;Mark Ronson;https://example.com/uptown_funk.jpg;4:30;;;Bruno Mars
 song;Despacito;Vida;2017;Luis Fonsi;https://example.com/despacito.jpg;3:48;;;;
@@ -9,7 +13,7 @@ song;Closer;Collage;2016;The Chainsmokers;https://example.com/closer.jpg;4:04;;;
 song;Someone Like You;21;2011;Adele;https://example.com/someone_like_you.jpg;4:45;;;;
 song;Blinding Lights;After Hours;2019;The Weeknd;https://example.com/blinding_lights.jpg;3:20;;;;
 song;Thinking Out Loud;× (Multiply);2014;Ed Sheeran;https://example.com/thinking_out_loud.jpg;4:41;;;;
-song;Waka Waka (This Time for Africa);Listen Up! The Official 2010 FIFA World Cup Album;2010;Shakira;pics/Waka Waka.jpg;;;;
+song;Waka Waka (This Time for Africa);Listen Up! The Official 2010 FIFA World Cup Album;2010;Shakira;src/main/resources/pics/Waka Waka.jpg;;;;
 song;Can't Stop the Feeling!;Trolls (Original Motion Picture Soundtrack);2016;Justin Timberlake;https://example.com/cant_stop_the_feeling.jpg;4:19;;;;
 song;Cheap Thrills;This Is Acting;2016;Sia;https://example.com/cheap_thrills.jpg;3:31;;;;
 song;Sorry;Purpose;2015;Justin Bieber;https://example.com/sorry.jpg;3:20;;;;
