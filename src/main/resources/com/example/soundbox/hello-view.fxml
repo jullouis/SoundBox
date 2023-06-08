@@ -68,6 +68,7 @@
                   <ListView fx:id="proposalList" layoutX="329.0" layoutY="79.0" onMouseClicked="#selectSongFromList" prefHeight="40.0" prefWidth="149.0" />
                   <ImageView fx:id="cover" fitHeight="201.0" fitWidth="210.0" layoutX="254.0" layoutY="138.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                   </ImageView>
+                  <Button layoutX="658.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchToScene2" text="Admin" />
                </children>
             </Pane>
          </children>

@@ -1,5 +1,6 @@
 package com.example.soundbox;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 
 
@@ -37,6 +44,17 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
+        /*try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }*/
+
         /*FXMLLoader adminLoader;
         adminLoader = new FXMLLoader(HelloApplication.class.getResource("admin.fxml"));
         Scene adminScene = new Scene(adminLoader.load(), 800, 600);
@@ -44,6 +62,8 @@ public class HelloApplication extends Application {
         stage.setScene(adminScene);
         stage.show();*/
     }
+
+
     public HelloApplication() throws FileNotFoundException {
 
         String csvFile = "data/database/songs_db.csv";
@@ -138,5 +158,9 @@ public class HelloApplication extends Application {
     //public static ArrayList<String> getSongList(){ // Donner la liste nameList pour plus loin
         //return songList;
     //}
+
+    //-------------------------------Main.java-------------------------------------
+
+
 
 }
