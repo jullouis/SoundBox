@@ -1,8 +1,15 @@
 package com.example.soundbox;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -16,6 +23,9 @@ public class Admin extends HelloController {
     public TextField adminAlbum;
     public Button adminPicture;
     public Button adminMP3;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     protected void addSong() throws IOException {
         FileWriter writer = new FileWriter("data/database/songs_db.csv",true);
@@ -58,5 +68,13 @@ public class Admin extends HelloController {
     }
     @FXML
     protected void modSong() {
+    }
+    @FXML
+    public void switchToScene1(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

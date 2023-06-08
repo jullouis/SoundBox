@@ -2,11 +2,17 @@ package com.example.soundbox;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -367,6 +373,22 @@ public class HelloController {
             }
 
         }
+
+
+        //permettant le switch scene
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    @FXML
+    public void switchToScene2(ActionEvent event) throws IOException {
+        System.out.println("Trying to switch to Admin...");
+        Parent root = FXMLLoader.load(HelloApplication.class.getResource("admin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
 
 
