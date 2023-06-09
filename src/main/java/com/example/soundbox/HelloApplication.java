@@ -49,7 +49,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 740, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 716, 477);
         stage.setTitle("SoundBox limited");
         stage.setScene(scene);
         stage.show();

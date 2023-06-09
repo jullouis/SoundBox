@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.soundbox.HelloController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.soundbox.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="0.0" left="0.0" right="0.0" top="0.0" />
     </padding>
    <children>
       <AnchorPane prefHeight="461.0" prefWidth="604.0">
@@ -20,7 +30,7 @@
                         <Image url="@../../../pics/Arrière_plan.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="92.0" fitWidth="47.0" layoutX="669.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="92.0" fitWidth="47.0" layoutX="647.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../pics/LOGO_Sound_box.png" />
                      </image>
@@ -59,6 +69,7 @@
                   <ImageView fx:id="cover" fitHeight="201.0" fitWidth="210.0" layoutX="254.0" layoutY="138.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                   </ImageView>
                   <Button layoutX="658.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchToScene2" text="Admin" visible="false" />
+                  <Button layoutX="30.0" layoutY="433.0" mnemonicParsing="false" onAction="#switchToLogin" text="Accueil" />
                </children>
             </Pane>
          </children>
