@@ -72,6 +72,8 @@ public class Admin extends HelloController {
         writer.append(";");
         writer.append(adminMP3.getImage().getUrl());
         writer.close();
+
+
     }
     @FXML
     protected void deleteSong() throws IOException {
