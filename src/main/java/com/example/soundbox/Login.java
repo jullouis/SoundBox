@@ -34,6 +34,9 @@ public class Login {
     private Parent root;
     ArrayList<String> adminList = new ArrayList<>();
 
+    /**
+     *
+     */
     public Login(){
         adminList.add("Noah");
         adminList.add("Julien");
@@ -41,24 +44,23 @@ public class Login {
 
     }
 
+    /**
+     *         //récupérer l'id et le pw dans les champs
+     *         //voir si l'id existe
+     *         //si oui, comparer au pw
+     *         //si pw ok, accepter
+     *         //si non, rejeter pour mauvais pw
+     *         //si non, rejeter pour compte inexistant
+     */
     @FXML
     protected void loginButton(){
         String id;
         String pw;
 
         //récupérer l'id et le pw dans les champs
-        //voir si l'id existe
-        //si oui, comparer au pw
-        //si pw ok, accepter
-        //si non, rejeter pour mauvais pw
-        //si non, rejeter pour compte inexistant
-
-
-        //récupérer l'id et le pw dans les champs
         id = idField.getText();
         pw = pwField.getText();
         int i = 0;
-
 
         //voir si l'id existe
         if(HelloApplication.getUserList().contains(id)) {
@@ -73,7 +75,6 @@ public class Login {
                     i++;
                     System.out.println("Searching...");
                 }
-
             }
             //si pw ok, accepter
             if (pw.equals(HelloApplication.getUserPasswords().get(i))){
@@ -87,13 +88,17 @@ public class Login {
             }else{ //si non, rejeter pour mauvais pw
                 System.out.println("Mot de passe incorrect");
             }
-
             // si non, rejeter pour compte inexistant
         }else{
             System.out.println("Compte inexistant");
-
         }
     }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void switchToAdmin(ActionEvent event) throws IOException {
         System.out.println("Trying to switch to Admin...");
@@ -103,6 +108,12 @@ public class Login {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void switchToUser(ActionEvent event) throws IOException {
         System.out.println("Trying to switch to User...");
