@@ -44,6 +44,8 @@ public class HelloController {
     @FXML
     private Label duration;
     @FXML
+    private Label album;
+    @FXML
     private GridPane songDatas;
     @FXML
     private int currentIndex = -1;
@@ -153,12 +155,14 @@ public class HelloController {
     protected void getSongDatas() {
         if (currentIndex != 0) {
             title.setText(HelloApplication.getNameList().get(currentIndex));
+            album.setText(HelloApplication.getAlbumList().get(currentIndex));
             year.setText(HelloApplication.getYearList().get(currentIndex));
             artist.setText(HelloApplication.getMainInterpreterList().get(currentIndex));
             duration.setText(HelloApplication.getDurationList().get(currentIndex));
         } else {
             // Manage the case where the element has not been found or does not exist
             title.setText("");
+            album.setText("");
             year.setText("");
             artist.setText("");
             duration.setText("");
@@ -208,8 +212,8 @@ public class HelloController {
             if (index >= 0) {
                 currentIndex = index;
                 stateSong.setText(selectedSong);
-                songDatas.setVisible(true);
-                cover.setVisible(true);
+                songDatas.setVisible(false);
+                cover.setVisible(false);
             }
         }
 

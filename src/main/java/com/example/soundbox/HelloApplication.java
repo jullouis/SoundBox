@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 public class HelloApplication extends Application {
     static ArrayList<String> nameList = new ArrayList<>();
     static ArrayList<String> yearList = new ArrayList<>();
+    static ArrayList<String> albumList =new ArrayList<>();
     static ArrayList<String> mainInterpreterList = new ArrayList<>();
     static ArrayList<String> coverUrlList = new ArrayList<>();
     static ArrayList<String> durationList = new ArrayList<>();
@@ -95,9 +96,10 @@ public class HelloApplication extends Application {
                 String[] columns = line.split(delimiter);
                 // Ajouter les valeurs de la colonne souhaitée à la liste
                 nameList.add(columns[1]); // Modifier l'indice selon la colonne souhaitée
-                yearList.add(columns[2]);
-                mainInterpreterList.add(columns[3]);
-                coverUrlList.add(columns[4]);
+                albumList.add(columns[2]);
+                yearList.add(columns[3]);
+                mainInterpreterList.add(columns[4]);
+                coverUrlList.add(columns[5]);
                 // code modifié car il n'affichait pas le temps remplacée columns.length >= 6 par columns.length >= 7 et le temps est sur la colonne 6 et pas 5
                 if (columns.length >= 7 && !columns[5].isEmpty()) {
                     durationList.add(columns[6]);
@@ -122,6 +124,7 @@ public class HelloApplication extends Application {
 
         // Afficher les valeurs de la liste
             System.out.println(nameList);
+            System.out.println(albumList);
             System.out.println(yearList);
             System.out.println(mainInterpreterList);
             System.out.println(coverUrlList);
@@ -180,7 +183,9 @@ public class HelloApplication extends Application {
     public static ArrayList<String> getNameList(){ // Donner la liste nameList pour plus loin
         return nameList;
     }
-    //ToDo ajouter l'album à la liste ?
+    public static ArrayList<String> getAlbumList(){ // Donner la liste nameList pour plus loin
+        return albumList;
+    }
     public static ArrayList<String> getYearList(){ // Donner la liste nameList pour plus loin
         return yearList;
     }
