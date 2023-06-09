@@ -51,12 +51,6 @@ public class HelloController {
     protected ImageView cover;
     @FXML
     private ListView<String> proposalList;
-    @FXML
-    private Stage stage;
-    @FXML
-    private Scene scene;
-    @FXML
-    private Parent root;
 
     /**
      * This method displays the music selected in the reasearchBar.
@@ -214,8 +208,8 @@ public class HelloController {
             if (index >= 0) {
                 currentIndex = index;
                 stateSong.setText(selectedSong);
-                songDatas.setVisible(false);
-                cover.setVisible(false);
+                songDatas.setVisible(true);
+                cover.setVisible(true);
             }
         }
 
@@ -342,7 +336,11 @@ public class HelloController {
 
         }
 
-        //Switch scene
+
+        //permettant le switch scene
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     public void switchToScene2(ActionEvent event) throws IOException {
         System.out.println("Trying to switch to Admin...");
