@@ -1,5 +1,6 @@
 package com.example.soundbox;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
 
 
 public class HelloApplication extends Application {
@@ -26,6 +33,9 @@ public class HelloApplication extends Application {
     static ArrayList<String> durationList = new ArrayList<>();
     static ArrayList<String> songList = new ArrayList<>();
     //static ArrayList<String> featList = new ArrayList<>();
+    static ArrayList<String> userList = new ArrayList<>();
+    static ArrayList<String> userPasswords = new ArrayList<>();
+
 
 
     @Override
@@ -37,6 +47,31 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
+        /*FXMLLoader fxmlLoader;
+        fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 740, 500);
+        stage.setTitle("SoundBox limited");
+        stage.setScene(scene);
+        stage.show();*/
+
+
+
+
+
+
+
+        // A supprimer
+        /*try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }*/
+
         /*FXMLLoader adminLoader;
         adminLoader = new FXMLLoader(HelloApplication.class.getResource("admin.fxml"));
         Scene adminScene = new Scene(adminLoader.load(), 800, 600);
@@ -44,6 +79,8 @@ public class HelloApplication extends Application {
         stage.setScene(adminScene);
         stage.show();*/
     }
+
+
     public HelloApplication() throws FileNotFoundException {
 
         String csvFile = "data/database/songs_db.csv";
@@ -110,10 +147,33 @@ public class HelloApplication extends Application {
 
         }
         sc.close();//fermeture du fichier*/
+
+        //Ajout des comptes User
+        userList.add("Noah");
+        userPasswords.add("Noah123");
+
+        userList.add("Julien");
+        userPasswords.add("Julien321");
+
+        userList.add("Nathan");
+        userPasswords.add("Nathan345");
+
+        userList.add("Demo");
+        userPasswords.add("demo");
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    //Liste des identifiants et mots de passe
+    //C'est clairement pas une version sûre de sécuriser un mot de passe, puisque n'importe qui peut y accéder
+    //s'il a accès à ce code. Ils devraient être stockés ailleurs, dans une base de données chiffées
+    public static ArrayList<String> getUserList(){
+        return userList;
+    }
+    public static ArrayList<String> getUserPasswords(){
+        return userPasswords;
     }
 
     // Donner la liste nameList pour plus loin
@@ -138,5 +198,9 @@ public class HelloApplication extends Application {
     //public static ArrayList<String> getSongList(){ // Donner la liste nameList pour plus loin
         //return songList;
     //}
+
+    //-------------------------------Main.java-------------------------------------
+
+
 
 }
