@@ -40,19 +40,19 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader;
+        /*FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 740, 500);
         stage.setTitle("SoundBox limited");
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
 
-        /*FXMLLoader fxmlLoader;
+        FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 740, 500);
         stage.setTitle("SoundBox limited");
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
 
 
 
