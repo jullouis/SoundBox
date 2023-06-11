@@ -109,7 +109,7 @@ public class Admin extends HelloController {
             writer1.append(";");
             writer1.append(mainInterpreterList.get(i));
             writer1.append(";");
-            writer1.append(coverUrlList.get(i);
+            writer1.append(coverUrlList.get(i));
             writer1.append(";");
             writer1.append(durationList.get(i));
             writer1.append(";");
@@ -151,7 +151,7 @@ public class Admin extends HelloController {
             writer1.append(";");
             writer1.append(HelloApplication.mainInterpreterList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.coverUrlList.get(i);
+            writer1.append(HelloApplication.coverUrlList.get(i));
             writer1.append(";");
             writer1.append(HelloApplication.durationList.get(i));
             writer1.append(";");
