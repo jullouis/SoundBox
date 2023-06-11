@@ -29,6 +29,10 @@ public class Admin extends HelloController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    /**
+     * This method is for choosing pics files from our disk for the song in the interface.
+     */
     @FXML
     protected void ChooserPics() {
         FileChooser fileChooser = new FileChooser();
@@ -38,6 +42,10 @@ public class Admin extends HelloController {
             adminPicture.setImage(img);
         }
     }
+
+    /**
+     * This method is for choosing the MP3 files from our disk for the song in the interface.
+     */
     @FXML
     protected void ChooserSongs() {
         FileChooser fileChooser = new FileChooser();
@@ -47,6 +55,10 @@ public class Admin extends HelloController {
             adminMP3.setImage(img);
         }
     }
+
+    /**
+     * This method is used to add the sounds in the lists and in the csv files with all the criteria fields filled.
+     */
     @FXML
     protected void addSong() throws IOException {
         FileWriter writer = new FileWriter("data/database/songs_db.csv", true);
@@ -54,22 +66,22 @@ public class Admin extends HelloController {
         writer.append("song");
         writer.append(";");
         writer.append(adminName.getText());
-        //HelloApplication.nameList.add(adminName.getText());
+        HelloApplication.nameList.add(adminName.getText());
         writer.append(";");
         writer.append(adminAlbum.getText());
-        //HelloApplication.albumList.add(adminAlbum.getText());
+        HelloApplication.albumList.add(adminAlbum.getText());
         writer.append(";");
         writer.append(adminYear.getText());
-        //HelloApplication.yearList.add(adminYear.getText());
+        HelloApplication.yearList.add(adminYear.getText());
         writer.append(";");
         writer.append(adminMainInterpreter.getText());
-        //HelloApplication.mainInterpreterList.add(adminMainInterpreter.getText());
+        HelloApplication.mainInterpreterList.add(adminMainInterpreter.getText());
         writer.append(";");
         writer.append(adminPicture.getImage().getUrl());
-        //HelloApplication.coverUrlList.add(adminPicture.getImage().getUrl());
+        HelloApplication.coverUrlList.add(adminPicture.getImage().getUrl());
         writer.append(";");
         writer.append(adminDuration.getText());
-        //HelloApplication.durationList.add(adminDuration.getText());
+        HelloApplication.durationList.add(adminDuration.getText());
         writer.append(";");
         writer.append("");
         writer.append(";");
@@ -79,21 +91,23 @@ public class Admin extends HelloController {
         writer.append(";");
         writer.append(adminMP3.getImage().getUrl());
         writer.close();
-
-
     }
+
+    /**
+     * This method is used to delete the sounds in the lists and in the csv files.
+     */
     @FXML
     protected void deleteSong() throws IOException {
         String Value = adminName.getText();
         int index = nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
         writer.append("");
-        nameList.remove(index);
-        albumList.remove(index);
-        yearList.remove(index);
-        mainInterpreterList.remove(index);
-        coverUrlList.remove(index);
-        durationList.remove(index);
+        HelloApplication.nameList.remove(index);
+        HelloApplication.albumList.remove(index);
+        HelloApplication.yearList.remove(index);
+        HelloApplication.mainInterpreterList.remove(index);
+        HelloApplication.coverUrlList.remove(index);
+        HelloApplication.durationList.remove(index);
         writer.close();
         FileWriter writer1 = new FileWriter("data/database/songs_db.csv", true);
         int i = -1;
@@ -101,17 +115,17 @@ public class Admin extends HelloController {
             i ++;
             writer1.append("song");
             writer1.append(";");
-            writer1.append(nameList.get(i));
+            writer1.append(HelloApplication.nameList.get(i));
             writer1.append(";");
-            writer1.append(albumList.get(i));
+            writer1.append(HelloApplication.albumList.get(i));
             writer1.append(";");
-            writer1.append(yearList.get(i));
+            writer1.append(HelloApplication.yearList.get(i));
             writer1.append(";");
-            writer1.append(mainInterpreterList.get(i));
+            writer1.append(HelloApplication.mainInterpreterList.get(i));
             writer1.append(";");
-            writer1.append(coverUrlList.get(i));
+            writer1.append(HelloApplication.coverUrlList.get(i));
             writer1.append(";");
-            writer1.append(durationList.get(i));
+            writer1.append(HelloApplication.durationList.get(i));
             writer1.append(";");
             writer1.append("");
             writer1.append(";");
@@ -124,10 +138,14 @@ public class Admin extends HelloController {
             writer1.close();
         }
     }
+
+    /**
+     * This method is used to modify the sound criteria in the lists and in the csv files.
+     */
     @FXML
     protected void modSong() throws IOException {
         String Value = adminName.getText();
-        int index = nameList.indexOf(Value);
+        int index = HelloApplication.nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
         writer.append("");
         HelloApplication.nameList.set(index,adminName.getText());
@@ -166,6 +184,10 @@ public class Admin extends HelloController {
             writer1.close();
         }
     }
+
+    /**
+     * This method is for switch to scene.
+     */
     @FXML
     public void switchToScene1(ActionEvent event) throws IOException {
         root = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));

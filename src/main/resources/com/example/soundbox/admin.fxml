@@ -18,8 +18,8 @@
          <children>
             <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="477.0" prefWidth="716.0">
                <children>
-                  <TextField fx:id="Reaserch" layoutX="275.0" layoutY="39.0" />
-                  <Button layoutX="192.0" layoutY="39.0" mnemonicParsing="false" onAction="#ResearchButton" text="Recherche" />
+                  <TextField layoutX="275.0" layoutY="39.0" />
+                  <Button layoutX="192.0" layoutY="39.0" mnemonicParsing="false" text="Recherche" />
                   <Button layoutX="448.0" layoutY="424.0" mnemonicParsing="false" onAction="#addSong" text="Ajouter Musique" />
                   <Button layoutX="295.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteSong" text="Supprimer Musique" />
                   <Button layoutX="150.0" layoutY="424.0" mnemonicParsing="false" onAction="#modSong" text="Modifier Musique" />
