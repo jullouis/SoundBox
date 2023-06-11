@@ -18,26 +18,24 @@
          <children>
             <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="477.0" prefWidth="716.0">
                <children>
-                  <TextField fx:id="researchBarre" layoutX="275.0" layoutY="39.0" />
-                  <Button layoutX="192.0" layoutY="39.0" mnemonicParsing="false" text="Recherche" />
+                  <TextField fx:id="Reaserch" layoutX="275.0" layoutY="39.0" />
+                  <Button layoutX="192.0" layoutY="39.0" mnemonicParsing="false" onAction="#ResearchButton" text="Recherche" />
                   <Button layoutX="448.0" layoutY="424.0" mnemonicParsing="false" onAction="#addSong" text="Ajouter Musique" />
                   <Button layoutX="295.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteSong" text="Supprimer Musique" />
                   <Button layoutX="150.0" layoutY="424.0" mnemonicParsing="false" onAction="#modSong" text="Modifier Musique" />
                   <Button layoutX="108.0" layoutY="304.0" mnemonicParsing="false" onAction="#ChooserPics" text="Ajouter image" />
-                  <TextField fx:id="adminName" layoutX="369.0" layoutY="131.0" />
-                  <TextField fx:id="adminYear" layoutX="369.0" layoutY="173.0" />
-                  <TextField fx:id="adminMainInterpreter" layoutX="369.0" layoutY="214.0" />
-                  <TextField fx:id="adminDuration" layoutX="369.0" layoutY="252.0" />
-                  <TextField fx:id="adminFeat" layoutX="369.0" layoutY="292.0" />
-                  <TextField fx:id="adminAlbum" layoutX="369.0" layoutY="334.0" />
+                  <TextField fx:id="adminName" layoutX="369.0" layoutY="150.0" />
+                  <TextField fx:id="adminYear" layoutX="369.0" layoutY="192.0" />
+                  <TextField fx:id="adminMainInterpreter" layoutX="369.0" layoutY="233.0" />
+                  <TextField fx:id="adminDuration" layoutX="369.0" layoutY="271.0" />
+                  <TextField fx:id="adminAlbum" layoutX="369.0" layoutY="314.0" />
                   <Button layoutX="578.0" layoutY="234.0" mnemonicParsing="false" onAction="#ChooserSongs" text="Ajouter MP3" />
                   <ImageView fx:id="adminPicture" fitHeight="132.0" fitWidth="158.0" layoutX="74.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="327.0" layoutY="135.0" text="Nom :" />
-                  <Label layoutX="302.0" layoutY="218.0" text="Chanteur : " />
-                  <Label layoutX="317.0" layoutY="176.0" prefHeight="17.0" prefWidth="43.0" text="Année :" />
-                  <Label layoutX="322.0" layoutY="256.0" text="Durée :" />
-                  <Label layoutX="330.0" layoutY="296.0" text="Feat :" />
-                  <Label layoutX="319.0" layoutY="338.0" text="Album :" />
+                  <Label layoutX="327.0" layoutY="154.0" text="Nom :" />
+                  <Label layoutX="302.0" layoutY="237.0" text="Chanteur : " />
+                  <Label layoutX="317.0" layoutY="195.0" prefHeight="17.0" prefWidth="43.0" text="Année :" />
+                  <Label layoutX="322.0" layoutY="275.0" text="Durée :" />
+                  <Label layoutX="319.0" layoutY="318.0" text="Album :" />
                   <Button layoutX="647.0" layoutY="438.0" mnemonicParsing="false" onAction="#switchToScene1" text="User" />
                   <ImageView fx:id="adminMP3" fitHeight="71.0" fitWidth="104.0" layoutX="567.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
                </children>
