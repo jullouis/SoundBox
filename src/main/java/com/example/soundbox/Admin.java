@@ -84,14 +84,16 @@ public class Admin extends HelloController {
     }
     @FXML
     protected void deleteSong() throws IOException {
+        String Value = adminName.getText();
+        int index = nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
         writer.append("");
-        HelloApplication.nameList.remove(index);
-        HelloApplication.albumList.remove(index);
-        HelloApplication.yearList.remove(index);
-        HelloApplication.mainInterpreterList.remove(index);
-        HelloApplication.coverUrlList.remove(index);
-        HelloApplication.durationList.remove(index);
+        nameList.remove(index);
+        albumList.remove(index);
+        yearList.remove(index);
+        mainInterpreterList.remove(index);
+        coverUrlList.remove(index);
+        durationList.remove(index);
         writer.close();
         FileWriter writer1 = new FileWriter("data/database/songs_db.csv", true);
         int i = -1;
@@ -99,17 +101,17 @@ public class Admin extends HelloController {
             i ++;
             writer1.append("song");
             writer1.append(";");
-            writer1.append(HelloApplication.nameList.get(i));
+            writer1.append(nameList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.albumList.get(i));
+            writer1.append(albumList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.yearList.get(i));
+            writer1.append(yearList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.mainInterpreterList.get(i));
+            writer1.append(mainInterpreterList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.coverUrlList.get(i);
+            writer1.append(coverUrlList.get(i);
             writer1.append(";");
-            writer1.append(HelloApplication.durationList.get(i));
+            writer1.append(durationList.get(i));
             writer1.append(";");
             writer1.append("");
             writer1.append(";");
@@ -124,14 +126,16 @@ public class Admin extends HelloController {
     }
     @FXML
     protected void modSong() throws IOException {
+        String Value = adminName.getText();
+        int index = nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
         writer.append("");
         HelloApplication.nameList.set(index,adminName.getText());
         HelloApplication.albumList.set(index,adminAlbum.getText());
-        HelloApplication.yearList.set(index,adminYear);
-        HelloApplication.mainInterpreterList.set(index,adminMainInterpreter);
-        HelloApplication.coverUrlList.set(index,adminPicture);
-        HelloApplication.durationList.set(index,adminDuration);
+        HelloApplication.yearList.set(index,adminYear.getText());
+        HelloApplication.mainInterpreterList.set(index,adminMainInterpreter.getText());
+        HelloApplication.coverUrlList.set(index,adminPicture.getImage().getUrl());
+        HelloApplication.durationList.set(index,adminDuration.getText());
         writer.close();
         FileWriter writer1 = new FileWriter("data/database/songs_db.csv", true);
         int i = -1;
@@ -161,9 +165,7 @@ public class Admin extends HelloController {
             writer1.append("\n");
             writer1.close();
         }
-
     }
-
     @FXML
     public void switchToScene1(ActionEvent event) throws IOException {
         root = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));
