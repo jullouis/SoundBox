@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -94,6 +95,11 @@ public class Login {
             warningText.setText("Compte inexistant");
             System.out.println("Compte inexistant");
         }
+    }
+    @FXML
+    public void onEnter(ActionEvent ae){
+        System.out.println("test") ;
+        loginButton();
     }
 
     /**
