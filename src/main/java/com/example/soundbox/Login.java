@@ -86,10 +86,12 @@ public class Login {
                 }
                 user.setVisible(true);
             }else{ //si non, rejeter pour mauvais pw
+                warningText.setText("Mot de passe incorrect");
                 System.out.println("Mot de passe incorrect");
             }
             // si non, rejeter pour compte inexistant
         }else{
+            warningText.setText("Compte inexistant");
             System.out.println("Compte inexistant");
         }
     }
