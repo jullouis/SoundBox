@@ -1,8 +1,8 @@
 type;Name;album;year;mainInterpreter;coverURL;duration;songList;numberSongs;feat;songURL
-song;One More Time;Discovery;2001;Daft Punk;src/main/resources/pics/Discovery.jpg;5:20;;;;
-song;Aerodynamic;Discovery;2001;Daft Punk;src/main/resources/pics/Discovery.jpg;3:27;;;;
-song;Digital Love;Discovery;2001;Daft Punk;src/main/resources/pics/Discovery.jpg;4:58;;;;
-song;Harder, Better, Faster, Stronger;Discovery;2001;Daft Punk;src/main/resources/pics/Discovery.jpg;3:43;;;;
+song;One More Time;Discovery;2001;DaftPunk;src/main/resources/pics/Discovery.jpg;5:20;;;;
+song;Aerodynamic;Discovery;2001;DaftPunk;src/main/resources/pics/Discovery.jpg;3:27;;;;
+song;Digital Love;Discovery;2001;DaftPunk;src/main/resources/pics/Discovery.jpg;4:58;;;;
+song;Harder, Better, Faster, Stronger;Discovery;2001;DaftPunk;src/main/resources/pics/Discovery.jpg;3:43;;;;
 song;Rememeber the time;Dangerous;1991;Michael Jackson;src/main/resources/pics/Michael_Jackson_-_Remember_the_Time.png;4:56;;;
 song;Macarena;Mosaïque Solitaire;2017;Damso;src/main/resources/pics/Damso.jpg;3:35;;;;
 song;Shape of You;(Divide);2017;Ed Sheeran;src/main/resources/pics/Shape of you.jpg;3:53;;;;

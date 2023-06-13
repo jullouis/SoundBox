@@ -68,6 +68,7 @@ public class HelloController {
     protected int researchButton() {
         songDatas.setVisible(false);
         cover.setVisible(false);
+        proposalList.setVisible(false);
         String researchedText = researchBarre.getText();
         int index;
 
@@ -172,6 +173,7 @@ public class HelloController {
         String[] filteredArtists = filterArtists(searchText);
 
         proposalList.getItems().clear();
+        proposalList.setVisible(true);
         proposalList.getItems().addAll(filteredSongs);
         proposalList.getItems().addAll(filteredArtists);
     }
@@ -204,11 +206,18 @@ public class HelloController {
         return filteredSongs.toArray(new String[0]);
     }
     private String[] filterArtists(String searchText) {
+        int i = 0;
+        String textsong;
         List<String> filteredArtists = new ArrayList<>();
         for (String artist : HelloApplication.getMainInterpreterList()) {
+            textsong = "";
             if (artist.toLowerCase().startsWith(searchText.toLowerCase())) {
-                filteredArtists.add(artist);
+                //text += artist;
+                //text += ", ";
+                textsong += HelloApplication.getNameList().get(i);
+                filteredArtists.add(textsong);
             }
+            i ++;
         }
         return filteredArtists.toArray(new String[0]);
     }
