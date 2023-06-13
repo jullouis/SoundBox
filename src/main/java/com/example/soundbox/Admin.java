@@ -29,6 +29,7 @@ public class Admin extends HelloController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    public TextField adminSearch;
 
     /**
      * This method is for choosing pics files from our disk for the song in the interface.
@@ -102,30 +103,37 @@ public class Admin extends HelloController {
         int index = nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
         writer.append("");
-        HelloApplication.nameList.remove(index);
-        HelloApplication.albumList.remove(index);
-        HelloApplication.yearList.remove(index);
-        HelloApplication.mainInterpreterList.remove(index);
-        HelloApplication.coverUrlList.remove(index);
-        HelloApplication.durationList.remove(index);
+        nameList.remove(index);
+        albumList.remove(index);
+        yearList.remove(index);
+        mainInterpreterList.remove(index);
+        coverUrlList.remove(index);
+        durationList.remove(index);
         writer.close();
+        adminName.clear();
+        adminDuration.clear();
+        adminYear.clear();
+        adminMainInterpreter.clear();
+        adminAlbum.clear();
+        //adminMP3.clear();
+        //adminPicture.clear();
         FileWriter writer1 = new FileWriter("data/database/songs_db.csv", true);
         int i = -1;
         while (i<= nameList.size()){
             i ++;
             writer1.append("song");
             writer1.append(";");
-            writer1.append(HelloApplication.nameList.get(i));
+            writer1.append(nameList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.albumList.get(i));
+            writer1.append(albumList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.yearList.get(i));
+            writer1.append(yearList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.mainInterpreterList.get(i));
+            writer1.append(mainInterpreterList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.coverUrlList.get(i));
+            writer1.append(coverUrlList.get(i));
             writer1.append(";");
-            writer1.append(HelloApplication.durationList.get(i));
+            writer1.append(durationList.get(i));
             writer1.append(";");
             writer1.append("");
             writer1.append(";");
@@ -195,6 +203,25 @@ public class Admin extends HelloController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * This method is used to search the song in the list.
+     */
+    @FXML
+    public void search(){
+        String searchName = adminSearch.getText();
+        int index = nameList.indexOf(searchName);
+        if (index != -1) {
+            adminName.setText(nameList.get(index));
+            adminYear.setText(yearList.get(index));
+            adminMainInterpreter.setText(mainInterpreterList.get(index));
+            adminDuration.setText(durationList.get(index));
+            adminAlbum.setText(albumList.get(index));
+            //adminPicture.setImage(Image.fromPlatformImage(coverUrlList.get(index)));
+        } else {
+            adminSearch.setText("Le nom existe pas");
+        }
     }
 }
 
