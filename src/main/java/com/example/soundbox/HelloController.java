@@ -1,5 +1,6 @@
 package com.example.soundbox;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 
 //import java.util.ArrayList;
@@ -53,20 +55,29 @@ public class HelloController {
     protected ImageView cover;
     @FXML
     private ListView<String> proposalList;
+    
+
 
     /**
      * This method displays the music selected in the reasearchBar.
      * @return we return index i. The index contain a song type String that can be show on the label stateSong with the method research
      *  that this code ( int index = research(researchedText);
      */
+
     @FXML
     protected int researchButton() {
         songDatas.setVisible(false);
         cover.setVisible(false);
         String researchedText = researchBarre.getText();
-        int index = research(researchedText);
-        currentIndex = index;
+        int index;
 
+        if (HelloApplication.getNameList().stream().anyMatch(researchedText::equalsIgnoreCase)) {
+            index = research(researchedText);
+        } else {
+            index = researchArtist(researchedText);
+        }
+
+        currentIndex = index;
         return index;
     }
 
@@ -106,18 +117,44 @@ public class HelloController {
                     System.out.println(i);
                     break;
                 } else {
-                    System.out.println("i++");
+                    System.out.println("search");
                 }
             }
         }
         if (found) {
             stateSong.setText(HelloApplication.getNameList().get(i));
         } else if (researchBarre.getText().toString().isEmpty()) {
-            stateSong.setText("Aucune musique recherchée");
+            stateSong.setText("Aucune recherche");
         } else {
             stateSong.setText("L'élément recherché n'existe pas");
             currentIndex = -1; // rénitialiser l'index
         }
+        researchBarre.clear();
+        proposalList.getItems().clear();
+        return i;
+    }
+    protected int researchArtist(String researchedArtist) {
+        songDatas.setVisible(false);
+        boolean found = false;
+        int i = 0;
+
+        while (i < HelloApplication.getMainInterpreterList().size()) {
+            i++;
+            if (HelloApplication.getMainInterpreterList().get(i).equalsIgnoreCase(researchedArtist)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            stateSong.setText(HelloApplication.getNameList().get(i));
+        } else if (researchBarre.getText().isEmpty()) {
+            stateSong.setText("Aucune recherche");
+        } else {
+            stateSong.setText("Aucune musique de cet artiste trouvée");
+            currentIndex = -1;
+        }
+
         researchBarre.clear();
         proposalList.getItems().clear();
         return i;
@@ -132,9 +169,11 @@ public class HelloController {
     protected void setProposalList() {
         String searchText = researchBarre.getText();
         String[] filteredSongs = filterSongs(searchText);
+        String[] filteredArtists = filterArtists(searchText);
 
         proposalList.getItems().clear();
         proposalList.getItems().addAll(filteredSongs);
+        proposalList.getItems().addAll(filteredArtists);
     }
 
     @FXML
@@ -146,6 +185,34 @@ public class HelloController {
             }
         }
     }
+    /**
+     * Method filterSongs = filter music
+     * Create a list to store filtered songs
+     * Browse the list of available songs
+     * Check whether the name of the song begins with the search text
+     * Add the song to the filtered list
+     * @param searchText Text which is written on the researchBarre
+     * @return Convert the filtered list into an array of strings and return it
+     */
+    private String[] filterSongs(String searchText) {
+        List<String> filteredSongs = new ArrayList<>();
+        for (String song : HelloApplication.getNameList()) {
+            if (song.toLowerCase().startsWith(searchText.toLowerCase())) {
+                filteredSongs.add(song);
+            }
+        }
+        return filteredSongs.toArray(new String[0]);
+    }
+    private String[] filterArtists(String searchText) {
+        List<String> filteredArtists = new ArrayList<>();
+        for (String artist : HelloApplication.getMainInterpreterList()) {
+            if (artist.toLowerCase().startsWith(searchText.toLowerCase())) {
+                filteredArtists.add(artist);
+            }
+        }
+        return filteredArtists.toArray(new String[0]);
+    }
+
 
     /**
      * getSongDatas displays the music data retrieved from the songs.csv file in the songData.
@@ -218,24 +285,7 @@ public class HelloController {
         }
 
     }
-    /**
-     * Method filterSongs = filter music
-     * Create a list to store filtered songs
-     * Browse the list of available songs
-     * Check whether the name of the song begins with the search text
-     * Add the song to the filtered list
-     * @param searchText Text which is written on the researchBarre
-     * @return Convert the filtered list into an array of strings and return it
-     */
-    private String[] filterSongs(String searchText) {
-        List<String> filteredSongs = new ArrayList<>();
-        for (String song : HelloApplication.getNameList()) {
-            if (song.toLowerCase().startsWith(searchText.toLowerCase())) {
-                filteredSongs.add(song);
-            }
-        }
-        return filteredSongs.toArray(new String[0]);
-    }
+
     /**
      * Method stop the song which is on the stateSong
      * The method check if there is a String on the stateSong and put " est en pause " or " est en cours " or " Pas de musique" if stateSong is empty.
@@ -280,6 +330,7 @@ public class HelloController {
         getSongDatas();
         String currentSong = stateSong.getText();
 
+
         if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée")) {
             stateSong.setText("Impossible à jouer");
             songDatas.setVisible(false);
@@ -298,6 +349,7 @@ public class HelloController {
                 stateSong.setText(currentSong + " est en cours");
                 songDatas.setVisible(true);
                 cover.setVisible(true);
+
                 // For test!!! System.out.println("else if 2 playsong");
 
 
