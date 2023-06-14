@@ -248,6 +248,7 @@ public class HelloController {
     /**
      * This method adds music to the playlist.
      * If the music does not exist, it cannot be added to the playlist.
+     * When you add a music we do a sort to put in great place
      */
 
     @FXML
@@ -258,8 +259,9 @@ public class HelloController {
             stateSong.setText(" ");
             researchBarre.clear();
             proposalList.getItems().clear();
-        } else if (HelloApplication.getNameList().contains(songResearchBarre)) {//&& HelloApplication.getMainInterpreterList().contains(songResearchBarre)) {
+        } else if (HelloApplication.getNameList().contains(songResearchBarre)) {
             playlistBox.getItems().add(songResearchBarre);
+            playlistBox.getItems().sort(null);
             researchBarre.clear();
         } else {
             stateSong.setText("Impossible d'ajouter dans la playlist");
