@@ -42,6 +42,7 @@ public class Login {
         adminList.add("Noah");
         adminList.add("Julien");
         adminList.add("Nathan");
+        adminList.add("Prof");
 
     }
 

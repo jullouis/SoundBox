@@ -103,8 +103,14 @@ public class HelloApplication extends Application {
         userList.add("Nathan");
         userPasswords.add("Nathan345");
 
+        userList.add("Prof");
+        userPasswords.add("Informatic");
+
         userList.add("Demo");
         userPasswords.add("demo");
+
+        userList.add("User");
+        userPasswords.add("hes");
     }
 
     public static void main(String[] args) {
