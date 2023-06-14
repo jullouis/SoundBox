@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import static com.example.soundbox.HelloApplication.*;
 
@@ -30,6 +33,7 @@ public class Admin extends HelloController {
     private Scene scene;
     private Parent root;
     public TextField adminSearch;
+    public Label adminError;
 
     /**
      * This method is for choosing pics files from our disk for the song in the interface.
@@ -37,6 +41,7 @@ public class Admin extends HelloController {
     @FXML
     protected void ChooserPics() {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("src/main/resources/pics"));
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             Image img = new Image(file.toURI().toString());
@@ -45,11 +50,12 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is for choosing the MP3 files from our disk for the song in the interface.
+     * This method is for choosing the MP3 files from our disk for the song in the interface, but we don't use it again
      */
     @FXML
-    protected void ChooserSongs() {
+    protected void ChooserSongs() { // --> not in function
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("src/main/resources/songs"));
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             Image img = new Image(file.toURI().toString());
@@ -58,7 +64,7 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is used to add the sounds in the lists and in the csv files with all the criteria fields filled.
+     * This method is used to add the sounds features in the lists and in the csv files with all the criteria fields filled.
      */
     @FXML
     protected void addSong() throws IOException {
@@ -78,8 +84,11 @@ public class Admin extends HelloController {
         writer.append(adminMainInterpreter.getText());
         HelloApplication.mainInterpreterList.add(adminMainInterpreter.getText());
         writer.append(";");
-        writer.append(adminPicture.getImage().getUrl());
-        HelloApplication.coverUrlList.add(adminPicture.getImage().getUrl());
+        //take the right path of the url
+        String FullURL = adminPicture.getImage().getUrl();
+        String URL = FullURL.replace("file:/C:/HES-SO/Semestre%202/Informatique/SoundBox/", "");
+        writer.append(URL);
+        HelloApplication.coverUrlList.add(URL);
         writer.append(";");
         writer.append(adminDuration.getText());
         HelloApplication.durationList.add(adminDuration.getText());
@@ -90,12 +99,13 @@ public class Admin extends HelloController {
         writer.append(";");
         writer.append("");
         writer.append(";");
-        writer.append(adminMP3.getImage().getUrl());
+        writer.append("");
+        //writer.append(adminMP3.getImage().getUrl());      --> we don't use it now
         writer.close();
     }
 
     /**
-     * This method is used to delete the sounds in the lists and in the csv files.
+     * This method is used to delete the sounds features in the different lists and we write again the csv with these new lists
      */
     @FXML
     protected void deleteSong() throws IOException {
@@ -113,11 +123,10 @@ public class Admin extends HelloController {
         adminYear.clear();
         adminMainInterpreter.clear();
         adminAlbum.clear();
-        adminMP3.setImage(null);
+        //adminMP3.setImage(null);      --> we don't use it now
         adminPicture.setImage(null);
-        int i = -1;
-        while (i<= nameList.size()){
-            i ++;
+        int i = 0;
+        while (i < nameList.size()){
             writer.append("song");
             writer.append(";");
             writer.append(nameList.get(i));
@@ -138,30 +147,32 @@ public class Admin extends HelloController {
             writer.append(";");
             writer.append("");
             writer.append(";");
-            writer.append("adminMP3");
+            writer.append(""); // --> to replace when using the MP3
             writer.append("\n");
+            i ++;
 
         }
         writer.close();
     }
 
     /**
-     * This method is used to modify the sound criteria in the lists and in the csv files.
+     * This method is used to modify the sound features with the news, in the lists and we write again the csv with these new lists.
      */
     @FXML
     protected void modSong() throws IOException {
         String Value = adminName.getText();
         int index = HelloApplication.nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
-        HelloApplication.nameList.set(index,adminName.getText());
         HelloApplication.albumList.set(index,adminAlbum.getText());
         HelloApplication.yearList.set(index,adminYear.getText());
         HelloApplication.mainInterpreterList.set(index,adminMainInterpreter.getText());
-        HelloApplication.coverUrlList.set(index,adminPicture.getImage().getUrl());
+        //take the right path of the url
+        String FullURL = adminPicture.getImage().getUrl();
+        String URL = FullURL.replace("file:/C:/HES-SO/Semestre%202/Informatique/SoundBox/", "");
+        HelloApplication.coverUrlList.set(index,URL);
         HelloApplication.durationList.set(index,adminDuration.getText());
-        int i = -1;
-        while (i<= nameList.size()){
-            i++;
+        int i = 0;
+        while (i < nameList.size()){
             writer.append("song");
             writer.append(";");
             writer.append(HelloApplication.nameList.get(i));
@@ -182,8 +193,9 @@ public class Admin extends HelloController {
             writer.append(";");
             writer.append("");
             writer.append(";");
-            writer.append("adminMP3");
+            writer.append("");// --> to replace when using the MP3MP3
             writer.append("\n");
+            i++;
         }
         writer.close();
     }
@@ -201,7 +213,7 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is used to search the song in the list.
+     * This method is used to search the song in the list and add them to the interface
      */
     @FXML
     public void search(){
@@ -213,9 +225,11 @@ public class Admin extends HelloController {
             adminMainInterpreter.setText(mainInterpreterList.get(index));
             adminDuration.setText(durationList.get(index));
             adminAlbum.setText(albumList.get(index));
-            //adminPicture.setImage(Image.fromPlatformImage(coverUrlList.get(index)));
+            // Create the Image object :
+            Image image = new Image(new File(coverUrlList.get(index)).toURI().toString());
+            adminPicture.setImage(image);
         } else {
-            adminSearch.setText("Le nom existe pas");
+            adminError.setText("Le nom est inexistant");
         }
     }
 }
