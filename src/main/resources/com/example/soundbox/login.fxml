@@ -20,7 +20,7 @@
             <Image url="@../../../pics/LOGO_Sound_box.png" />
         </image>
     </ImageView>
-   <PasswordField fx:id="pwField" layoutX="278.0" layoutY="373.0" />
+   <PasswordField fx:id="pwField" layoutX="278.0" layoutY="373.0" onAction="#onEnter" />
    <Button fx:id="login" defaultButton="true" layoutX="393.0" layoutY="412.0" mnemonicParsing="false" onAction="#loginButton" text="Se connecter" />
    <Button fx:id="register" layoutX="244.0" layoutY="412.0" mnemonicParsing="false" text="S'inscrire" />
    <TextField fx:id="idField" layoutX="278.0" layoutY="336.0" />

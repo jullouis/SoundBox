@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -86,12 +87,19 @@ public class Login {
                 }
                 user.setVisible(true);
             }else{ //si non, rejeter pour mauvais pw
+                warningText.setText("Mot de passe incorrect");
                 System.out.println("Mot de passe incorrect");
             }
             // si non, rejeter pour compte inexistant
         }else{
+            warningText.setText("Compte inexistant");
             System.out.println("Compte inexistant");
         }
+    }
+    @FXML
+    public void onEnter(ActionEvent ae){
+        System.out.println("test") ;
+        loginButton();
     }
 
     /**

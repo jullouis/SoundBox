@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 
 public class HelloApplication extends Application {
     static ArrayList<String> nameList = new ArrayList<>();
@@ -21,6 +22,7 @@ public class HelloApplication extends Application {
     //static ArrayList<String> featList = new ArrayList<>();
     static ArrayList<String> userList = new ArrayList<>();
     static ArrayList<String> userPasswords = new ArrayList<>();
+
 
 
     /**
@@ -51,6 +53,7 @@ public class HelloApplication extends Application {
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
+            br.readLine();
             while ((line = br.readLine()) != null) {
 
                 String[] numberColumns = line.split(delimiter); //contrôle le nombre de colonnes entrées
@@ -81,6 +84,7 @@ public class HelloApplication extends Application {
         System.out.println(coverUrlList);
         System.out.println(durationList);
         System.out.println(songList);
+
 
         /**
          * Ajout des utilisateurs dans les liste des identifiants et mots de passe
