@@ -86,7 +86,8 @@ public class Admin extends HelloController {
         writer.append(";");
         //take the right path of the url
         String FullURL = adminPicture.getImage().getUrl();
-        String URL = FullURL.replace("file:/C:/HES-SO/Semestre%202/Informatique/SoundBox/", "");
+        int Index = FullURL.indexOf("SoundBox/") + "SoundBox/".length();
+        String URL = FullURL.substring(Index);
         writer.append(URL);
         HelloApplication.coverUrlList.add(URL);
         writer.append(";");
@@ -168,7 +169,8 @@ public class Admin extends HelloController {
         HelloApplication.mainInterpreterList.set(index,adminMainInterpreter.getText());
         //take the right path of the url
         String FullURL = adminPicture.getImage().getUrl();
-        String URL = FullURL.replace("file:/C:/HES-SO/Semestre%202/Informatique/SoundBox/", "");
+        int Index = FullURL.indexOf("SoundBox/") + "SoundBox/".length();
+        String URL = FullURL.substring(Index);
         HelloApplication.coverUrlList.set(index,URL);
         HelloApplication.durationList.set(index,adminDuration.getText());
         int i = 0;
