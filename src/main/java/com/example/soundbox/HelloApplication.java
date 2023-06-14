@@ -77,13 +77,13 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
-        System.out.println(nameList);
-        System.out.println(albumList);
-        System.out.println(yearList);
-        System.out.println(mainInterpreterList);
-        System.out.println(coverUrlList);
-        System.out.println(durationList);
-        System.out.println(songList);
+        System.out.println(nameList.size());
+        System.out.println(albumList.size());
+        System.out.println(yearList.size());
+        System.out.println(mainInterpreterList.size());
+        System.out.println(coverUrlList.size());
+        System.out.println(durationList.size());
+        System.out.println(songList.size());
 
 
         /**
