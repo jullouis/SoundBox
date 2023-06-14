@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static com.example.soundbox.HelloApplication.*;
+import static java.awt.Toolkit.resources;
 
 public class Admin extends HelloController {
     @FXML
@@ -37,7 +38,7 @@ public class Admin extends HelloController {
     @FXML
     protected void ChooserPics() {
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(src/main/resources/pics);
         if (file != null) {
             Image img = new Image(file.toURI().toString());
             adminPicture.setImage(img);
@@ -90,7 +91,8 @@ public class Admin extends HelloController {
         writer.append(";");
         writer.append("");
         writer.append(";");
-        writer.append(adminMP3.getImage().getUrl());
+        writer.append("");
+        //writer.append(adminMP3.getImage().getUrl());   --> we didn't use it
         writer.close();
     }
 
@@ -113,11 +115,10 @@ public class Admin extends HelloController {
         adminYear.clear();
         adminMainInterpreter.clear();
         adminAlbum.clear();
-        adminMP3.setImage(null);
+        //adminMP3.setImage(null);
         adminPicture.setImage(null);
-        int i = -1;
-        while (i<= nameList.size()){
-            i ++;
+        int i = 0;
+        while (i < nameList.size()){
             writer.append("song");
             writer.append(";");
             writer.append(nameList.get(i));
@@ -138,9 +139,9 @@ public class Admin extends HelloController {
             writer.append(";");
             writer.append("");
             writer.append(";");
-            writer.append("adminMP3");
+            writer.append("");//MP3
             writer.append("\n");
-
+            i ++;
         }
         writer.close();
     }
@@ -153,15 +154,13 @@ public class Admin extends HelloController {
         String Value = adminName.getText();
         int index = HelloApplication.nameList.indexOf(Value);
         FileWriter writer = new FileWriter("data/database/songs_db.csv", false);
-        HelloApplication.nameList.set(index,adminName.getText());
         HelloApplication.albumList.set(index,adminAlbum.getText());
         HelloApplication.yearList.set(index,adminYear.getText());
         HelloApplication.mainInterpreterList.set(index,adminMainInterpreter.getText());
         HelloApplication.coverUrlList.set(index,adminPicture.getImage().getUrl());
         HelloApplication.durationList.set(index,adminDuration.getText());
-        int i = -1;
-        while (i<= nameList.size()){
-            i++;
+        int i = 0;
+        while (i < nameList.size()){
             writer.append("song");
             writer.append(";");
             writer.append(HelloApplication.nameList.get(i));
@@ -182,8 +181,9 @@ public class Admin extends HelloController {
             writer.append(";");
             writer.append("");
             writer.append(";");
-            writer.append("adminMP3");
+            writer.append("");//MP3
             writer.append("\n");
+            i++;
         }
         writer.close();
     }
@@ -209,11 +209,12 @@ public class Admin extends HelloController {
         int index = nameList.indexOf(searchName);
         if (index != -1) {
             adminName.setText(nameList.get(index));
+
             adminYear.setText(yearList.get(index));
             adminMainInterpreter.setText(mainInterpreterList.get(index));
             adminDuration.setText(durationList.get(index));
             adminAlbum.setText(albumList.get(index));
-            //adminPicture.setImage(Image.fromPlatformImage(coverUrlList.get(index)));
+            //adminPicture.setImage(coverUrlList.get(index));
         } else {
             adminSearch.setText("Le nom existe pas");
         }
