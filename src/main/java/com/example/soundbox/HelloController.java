@@ -69,14 +69,27 @@ public class HelloController {
         songDatas.setVisible(false);
         cover.setVisible(false);
         proposalList.setVisible(false);
+
         String researchedText = researchBarre.getText();
-        int index;
+        int index = 0;
 
         if (HelloApplication.getNameList().stream().anyMatch(researchedText::equalsIgnoreCase)) {
             index = research(researchedText);
-        } else {
-            index = researchArtist(researchedText);
+            proposalList.setVisible(false);
         }
+        else if (HelloApplication.getMainInterpreterList().stream().anyMatch(researchedText::equalsIgnoreCase)){
+            index = researchArtist(researchedText);
+            proposalList.setVisible(false);
+
+        }
+        else if (researchBarre.getText().toString().isEmpty()) {
+            stateSong.setText("Aucune recherche");
+            currentIndex = -1;
+        } else {
+            stateSong.setText("L'élément recherché n'existe pas");
+            currentIndex = -1; // rénitialiser l'index
+        }
+        
 
         currentIndex = index;
         return index;
@@ -91,6 +104,7 @@ public class HelloController {
      */
     protected int research(String researchedSong) {
         songDatas.setVisible(false);
+        proposalList.setVisible(true);
         boolean found = false;
         int i = 0;
 
@@ -99,7 +113,6 @@ public class HelloController {
         System.out.println(i);
         if (HelloApplication.getNameList().stream().anyMatch(researchedSong::equalsIgnoreCase)) {//HelloApplication.getNameList().contains(researchedSong)) {
             while (i < HelloApplication.getNameList().size()) {
-                i++;
                 if (HelloApplication.getNameList().get(i).equalsIgnoreCase(researchedSong)) {
                     System.out.println(HelloApplication.getNameList().get(i));
                     System.out.println(i);
@@ -108,24 +121,15 @@ public class HelloController {
                 } else {
                     System.out.println("search");
                 }
-            }
-            // Searching the list of Interpreters
-        } else if (HelloApplication.getMainInterpreterList().contains(researchedSong)) {
-            while (i < HelloApplication.getMainInterpreterList().size()) {
                 i++;
-                if (HelloApplication.getMainInterpreterList().get(i).equalsIgnoreCase(researchedSong)) {
-                    System.out.println(HelloApplication.getMainInterpreterList().get(i));
-                    System.out.println(i);
-                    break;
-                } else {
-                    System.out.println("search");
-                }
             }
         }
+
         if (found) {
             stateSong.setText(HelloApplication.getNameList().get(i));
         } else if (researchBarre.getText().toString().isEmpty()) {
             stateSong.setText("Aucune recherche");
+            currentIndex = -1;
         } else {
             stateSong.setText("L'élément recherché n'existe pas");
             currentIndex = -1; // rénitialiser l'index
@@ -136,6 +140,7 @@ public class HelloController {
     }
     protected int researchArtist(String researchedArtist) {
         songDatas.setVisible(false);
+        proposalList.setVisible(true);
         boolean found = false;
         int i = 0;
 
@@ -149,13 +154,7 @@ public class HelloController {
 
         if (found) {
             stateSong.setText(HelloApplication.getNameList().get(i));
-        } else if (researchBarre.getText().isEmpty()) {
-            stateSong.setText("Aucune recherche");
-        } else {
-            stateSong.setText("Aucune musique de cet artiste trouvée");
-            currentIndex = -1;
         }
-
         researchBarre.clear();
         proposalList.getItems().clear();
         return i;
@@ -180,6 +179,7 @@ public class HelloController {
 
     @FXML
     protected void selectSongFromList(MouseEvent event) {
+        proposalList.setVisible(false);
         if (event.getClickCount() == 1) { // Checks whether a mouse click has been made
             String selectedSong = proposalList.getSelectionModel().getSelectedItem();
             if (selectedSong != null) {
@@ -197,6 +197,7 @@ public class HelloController {
      * @return Convert the filtered list into an array of strings and return it
      */
     private String[] filterSongs(String searchText) {
+        proposalList.setVisible(true);
         List<String> filteredSongs = new ArrayList<>();
         for (String song : HelloApplication.getNameList()) {
             if (song.toLowerCase().startsWith(searchText.toLowerCase())) {
@@ -206,6 +207,7 @@ public class HelloController {
         return filteredSongs.toArray(new String[0]);
     }
     private String[] filterArtists(String searchText) {
+        proposalList.setVisible(true);
         int i = 0;
         String textsong;
         List<String> filteredArtists = new ArrayList<>();
@@ -229,7 +231,7 @@ public class HelloController {
      */
     @FXML
     protected void getSongDatas() {
-        if (currentIndex != 0) {
+        if (currentIndex >= 0) {
             title.setText(HelloApplication.getNameList().get(currentIndex));
             album.setText(HelloApplication.getAlbumList().get(currentIndex));
             year.setText(HelloApplication.getYearList().get(currentIndex));
@@ -248,12 +250,13 @@ public class HelloController {
     /**
      * This method adds music to the playlist.
      * If the music does not exist, it cannot be added to the playlist.
-     * When you add a music we do a sort to put in great place
+     * when we add music to the playlist we sort in alphabetical order
      */
 
     @FXML
     protected void addSongPlaylist() {
         String songResearchBarre = researchBarre.getText();
+        proposalList.setVisible(false);
 
         if (songResearchBarre.equals("L'élément recherché n'existe pas")) {
             stateSong.setText(" ");
@@ -275,6 +278,7 @@ public class HelloController {
     protected void deleteSongPlaylist(ActionEvent event) {
         String selectedSong = playlistBox.getValue();
         String currentSong = stateSong.getText();
+        proposalList.setVisible(false);
 
         if (selectedSong != null && selectedSong.equals(currentSong)) {
             stateSong.setText("");
@@ -284,6 +288,7 @@ public class HelloController {
     @FXML
     protected void selectionSongPlaylist(ActionEvent event) {
         String selectedSong = playlistBox.getValue();
+        proposalList.setVisible(false);
         if (selectedSong != null) {
             int index = HelloApplication.getNameList().indexOf(selectedSong);
             // selects the correct data according to the music index
@@ -307,8 +312,14 @@ public class HelloController {
     protected void stopSong() {
         getSongDatas();
         String currentSong = stateSong.getText();
+        proposalList.setVisible(false);
 
-        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée")){
+        if (currentSong.equals("")){
+            stateSong.setText("Aucun élément sélectionnné");
+            songDatas.setVisible(false);
+        }
+
+        else if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée") || currentSong.equals("Aucune recherche") || currentSong.equals("Aucun élément sélectionnné")){
             stateSong.setText("Impossible à jouer");
             songDatas.setVisible(false);
             cover.setVisible(false);
@@ -340,9 +351,13 @@ public class HelloController {
     protected void playSong() {
         getSongDatas();
         String currentSong = stateSong.getText();
+        proposalList.setVisible(false);
 
-
-        if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée")) {
+        if (currentSong.equals("")){
+            stateSong.setText("Aucun élément sélectionnné");
+            songDatas.setVisible(false);
+        }
+        else if (currentSong.equals("L'élément recherché n'existe pas") || currentSong.equals("Impossible d'ajouter dans la playlist") || currentSong.equals("Aucune musique recherchée") || currentSong.equals("Aucune recherche") || currentSong.equals("Aucun élément sélectionnné") ) {
             stateSong.setText("Impossible à jouer");
             songDatas.setVisible(false);
             cover.setVisible(false);
