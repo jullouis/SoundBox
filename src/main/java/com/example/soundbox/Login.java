@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class Login {
     ArrayList<String> adminList = new ArrayList<>();
 
     /**
-     * Ajout des utilisateurs autorisés au niveau administrateur
+     *
      */
     public Login(){
         adminList.add("Noah");
@@ -57,16 +58,16 @@ public class Login {
     protected void loginButton(){
         String id;
         String pw;
-        int i = 0;
 
-        // Pick id and pw in the fields
+        //récupérer l'id et le pw dans les champs
         id = idField.getText();
         pw = pwField.getText();
+        int i = 0;
 
-        //Look if id is in the userList
+        //voir si l'id existe
         if(HelloApplication.getUserList().contains(id)) {
             System.out.println(id + " " + pw);
-            //If id is in userList, compare with is pw
+            //si oui, comparer au pw
             while(i < HelloApplication.getUserList().size()){
                 if (id.equals(HelloApplication.getUserList().get(i))){
                     System.out.println(HelloApplication.getUserList().get(i));
@@ -77,31 +78,28 @@ public class Login {
                     System.out.println("Searching...");
                 }
             }
-
-            //If pw is correct, accept access
+            //si pw ok, accepter
             if (pw.equals(HelloApplication.getUserPasswords().get(i))){
-                System.out.println("Access accepted");
+                System.out.println("Accepté");
                 login.setVisible(false);
                 register.setVisible(false);
                 if (adminList.contains(id)){
                     admin.setVisible(true);
                 }
                 user.setVisible(true);
-            //If pw is not correct, denied access
-            }else{
+            }else{ //si non, rejeter pour mauvais pw
                 warningText.setText("Mot de passe incorrect");
-                System.out.println("Incorrect password");
+                System.out.println("Mot de passe incorrect");
             }
-        //If id isn't in userList, reject for inexistant account
+            // si non, rejeter pour compte inexistant
         }else{
             warningText.setText("Compte inexistant");
-            System.out.println("Inexistant account");
+            System.out.println("Compte inexistant");
         }
     }
-
     @FXML
     public void onEnter(ActionEvent ae){
-        System.out.println("ENTER key pressed") ;
+        System.out.println("test") ;
         loginButton();
     }
 
