@@ -10,6 +10,9 @@ Version 15/06/2023
 
 Informations:
 
+To run the application, run the HelloApplication class:
+target/classes/com/example/soundbox/HelloApplication.class
+
 To log in the application, you have two possibilities:
 
  1) As user, use ID "User" with the password "hes"
