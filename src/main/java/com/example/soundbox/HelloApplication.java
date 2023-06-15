@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.List;
 
 public class HelloApplication extends Application {
     static ArrayList<String> nameList = new ArrayList<>();
@@ -25,7 +24,7 @@ public class HelloApplication extends Application {
 
 
     /**
-     * Lancement de l'application dans la fenêtre
+     * Launch application in window
      * @param stage
      * @throws IOException
      */
@@ -44,8 +43,8 @@ public class HelloApplication extends Application {
     public HelloApplication() throws FileNotFoundException {
 
         /**
-         * Lecture des informations dans le fichier CSV
-         * Ecriture dans les listes correspondant
+         * Reading information from the CSV file
+         * Write to corresponding lists
          */
         String csvFile = "data/database/songs_db.csv";
         String delimiter = ";";
@@ -55,16 +54,15 @@ public class HelloApplication extends Application {
             br.readLine();
             while ((line = br.readLine()) != null) {
 
-                String[] numberColumns = line.split(delimiter); //contrôle le nombre de colonnes entrées
-
+                String[] numberColumns = line.split(delimiter);
                 String[] columns = line.split(delimiter);
-                // Ajouter les valeurs de la colonne souhaitée à la liste
-                nameList.add(columns[1]); // Modifier l'indice selon la colonne souhaitée
+                // Add values of the column in the list
+                nameList.add(columns[1]);
                 albumList.add(columns[2]);
                 yearList.add(columns[3]);
                 mainInterpreterList.add(columns[4]);
                 coverUrlList.add(columns[5]);
-                // code modifié car il n'affichait pas le temps remplacée columns.length >= 6 par columns.length >= 7 et le temps est sur la colonne 6 et pas 5
+
                 if (columns.length >= 7 && !columns[5].isEmpty()) {
                     durationList.add(columns[6]);
                 }
@@ -86,10 +84,10 @@ public class HelloApplication extends Application {
 
 
         /**
-         * Ajout des utilisateurs dans les liste des identifiants et mots de passe
+         * Add users to the list of logins and passwords
          *
-         * C'est clairement pas une version sûre de sécuriser un mot de passe, puisque n'importe qui peut y accéder
-         * s'il a accès à ce code. Ils devraient être stockés ailleurs, dans une base de données chiffées
+         * This is clearly not a secure version of password protection, since anyone can access it
+         * if they have access to this code. They should be stored elsewhere, in an encrypted database
          * @return
          */
 
@@ -117,8 +115,8 @@ public class HelloApplication extends Application {
     }
 
     /**
-     * Les deux méthodes suivantes permettent de retourner les listes d'utilisateurs et leurs mots de passes
-     * créés dans cette classe afin de pouvoir les utiliser dans la classe Login
+     * The following two methods return lists of users and their passwords
+     * created in this class, so that they can be used in the Login class.
      *
      * @return userList
      * @return passwordList
@@ -131,8 +129,8 @@ public class HelloApplication extends Application {
     }
 
     /**
-     * Les méthodes suivantes permettent de retourner les liste créées par la lecture du fichier CSV
-     * nous servant de base de données
+     * The following methods return the lists created by reading the CSV file
+     * file used as our database
      *
      * @return nameList
      * @return albumList
