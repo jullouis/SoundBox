@@ -103,6 +103,13 @@ public class Admin extends HelloController {
         writer.append("");
         //writer.append(adminMP3.getImage().getUrl());      --> we don't use it now
         writer.close();
+        adminName.clear();
+        adminDuration.clear();
+        adminYear.clear();
+        adminMainInterpreter.clear();
+        adminAlbum.clear();
+        //adminMP3.setImage(null);      --> we don't use it now
+        adminPicture.setImage(null);
     }
 
     /**
@@ -173,6 +180,13 @@ public class Admin extends HelloController {
         String URL = FullURL.substring(Index);
         HelloApplication.coverUrlList.set(index,URL);
         HelloApplication.durationList.set(index,adminDuration.getText());
+        adminName.clear();
+        adminDuration.clear();
+        adminYear.clear();
+        adminMainInterpreter.clear();
+        adminAlbum.clear();
+        //adminMP3.setImage(null);      --> we don't use it now
+        adminPicture.setImage(null);
         int i = 0;
         while (i < nameList.size()){
             writer.append("song");
