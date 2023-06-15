@@ -19,7 +19,6 @@ public class HelloApplication extends Application {
     static ArrayList<String> coverUrlList = new ArrayList<>();
     static ArrayList<String> durationList = new ArrayList<>();
     static ArrayList<String> songList = new ArrayList<>();
-    //static ArrayList<String> featList = new ArrayList<>();
     static ArrayList<String> userList = new ArrayList<>();
     static ArrayList<String> userPasswords = new ArrayList<>();
 
