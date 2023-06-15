@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import static com.example.soundbox.HelloApplication.*;
 
@@ -50,7 +48,8 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is for choosing the MP3 files from our disk for the song in the interface, but we don't use it again
+     * This method is for choosing the MP3 files from our disk for the song in the interface,
+     * but we don't use it now.
      */
     @FXML
     protected void ChooserSongs() { // --> not in function
@@ -64,7 +63,8 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is used to add the sounds features in the lists and in the csv files with all the criteria fields filled.
+     * This method is used to add the sounds features in the lists and
+     * in the csv files with all the criteria fields filled.
      */
     @FXML
     protected void addSong() throws IOException {
@@ -246,8 +246,10 @@ public class Admin extends HelloController {
             // Create the Image object :
             Image image = new Image(new File(coverUrlList.get(index)).toURI().toString());
             adminPicture.setImage(image);
+            adminSearch.setText("");
         } else {
             adminError.setText("Le nom est inexistant");
+            adminSearch.setText("");
         }
     }
 }
