@@ -244,8 +244,11 @@ public class Admin extends HelloController {
             // Create the Image object :
             Image image = new Image(new File(coverUrlList.get(index)).toURI().toString());
             adminPicture.setImage(image);
+            adminSearch.setText("");
+            adminError.setText("");
         } else {
             adminError.setText("Le nom est inexistant");
+            adminSearch.setText("");
         }
     }
 }
