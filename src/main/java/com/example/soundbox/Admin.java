@@ -113,7 +113,8 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is used to delete the sounds features in the different lists and we write again the csv with these new lists
+     * This method is used to delete the sounds features in the different lists
+     * and we write again the csv with these new lists
      */
     @FXML
     protected void deleteSong() throws IOException {
@@ -164,7 +165,8 @@ public class Admin extends HelloController {
     }
 
     /**
-     * This method is used to modify the sound features with the news, in the lists and we write again the csv with these new lists.
+     * This method is used to modify the sound features with the news, in the lists
+     * and we write again the csv with these new lists.
      */
     @FXML
     protected void modSong() throws IOException {
